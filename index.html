@@ -4,6 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>aharoll</title>
+    
+    <!-- SEO & Social Preview -->
+    <meta name="description" content="The tool that changes everything. No explanations needed.">
+    <meta name="keywords" content="aharoll, creative tool, innovation">
+    <meta property="og:title" content="aharoll">
+    <meta property="og:description" content="You already know why you're here.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aharoll.com">
+    <meta property="og:image" content="https://aharoll.com/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="aharoll">
+    <meta name="twitter:description" content="You already know why you're here.">
+    <meta name="twitter:image" content="https://aharoll.com/og-image.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%232dd4a8'/%3E%3Cstop offset='100%25' stop-color='%23d4c82d'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='%230a0a0a'/%3E%3Ctext x='50' y='68' font-family='system-ui' font-size='55' font-weight='bold' fill='url(%23g)' text-anchor='middle'%3Ea%3C/text%3E%3C/svg%3E">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,41 +30,11 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'JetBrains Mono', monospace; background-color: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; overflow-x: hidden; }
         
-        /* Scan lines overlay */
-        body::before { 
-            content: ''; 
-            position: fixed; 
-            top: 0; left: 0; 
-            width: 100%; height: 100%; 
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 2px,
-                rgba(0, 0, 0, 0.15) 2px,
-                rgba(0, 0, 0, 0.15) 4px
-            );
-            pointer-events: none; 
-            z-index: 1000;
-            animation: scanFlicker 0.1s infinite;
-        }
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.15) 2px, rgba(0, 0, 0, 0.15) 4px); pointer-events: none; z-index: 1000; animation: scanFlicker 0.1s infinite; }
+        @keyframes scanFlicker { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.35; } }
         
-        @keyframes scanFlicker {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.35; }
-        }
+        body::after { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); opacity: 0.04; pointer-events: none; z-index: 999; }
         
-        /* Noise grain overlay */
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            opacity: 0.04;
-            pointer-events: none;
-            z-index: 999;
-        }
-
         nav { position: fixed; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 3rem; z-index: 100; background: linear-gradient(to bottom, var(--bg) 0%, transparent 100%); }
         .logo { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; }
         .login-link { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
@@ -56,104 +43,42 @@
         section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 6rem 2rem; position: relative; }
         
         .hero { text-align: center; }
-        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.03em; position: relative; }
-        
-        /* Glitch effect on hero title */
-        .hero h1 { animation: textGlitch 3s infinite; }
-        
-        @keyframes textGlitch {
-            0%, 92%, 100% { text-shadow: none; transform: translate(0); }
-            93% { text-shadow: -2px 0 #ff0040, 2px 0 #00ffff; transform: translate(-1px, 0); }
-            94% { text-shadow: 2px 0 #ff0040, -2px 0 #00ffff; transform: translate(1px, 0); }
-            95% { text-shadow: none; transform: translate(0); }
-            96% { text-shadow: -1px 0 #ff0040, 1px 0 #00ffff; transform: translate(0, -1px); }
-            97% { text-shadow: none; transform: translate(0); }
-        }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.03em; animation: textGlitch 3s infinite; }
+        @keyframes textGlitch { 0%, 92%, 100% { text-shadow: none; transform: translate(0); } 93% { text-shadow: -2px 0 #ff0040, 2px 0 #00ffff; transform: translate(-1px, 0); } 94% { text-shadow: 2px 0 #ff0040, -2px 0 #00ffff; transform: translate(1px, 0); } 95% { text-shadow: none; transform: translate(0); } 96% { text-shadow: -1px 0 #ff0040, 1px 0 #00ffff; transform: translate(0, -1px); } 97% { text-shadow: none; transform: translate(0); } }
         
         .hero h1 .highlight { color: var(--yellow); display: inline-block; animation: rgbShift 4s infinite; }
-        
-        @keyframes rgbShift {
-            0%, 90%, 100% { text-shadow: none; filter: none; }
-            91% { text-shadow: -2px 0 #ff0040, 2px 0 #00ffff; }
-            92% { text-shadow: 2px 0 #ff0040, -2px 0 #00ffff; filter: brightness(1.2); }
-            93% { text-shadow: 0 -1px #ff0040, 0 1px #00ffff; }
-            94% { text-shadow: none; filter: none; }
-        }
+        @keyframes rgbShift { 0%, 90%, 100% { text-shadow: none; filter: none; } 91% { text-shadow: -2px 0 #ff0040, 2px 0 #00ffff; } 92% { text-shadow: 2px 0 #ff0040, -2px 0 #00ffff; filter: brightness(1.2); } 93% { text-shadow: 0 -1px #ff0040, 0 1px #00ffff; } 94% { text-shadow: none; filter: none; } }
         
         .hero .subtitle { color: var(--text-dim); font-size: 1rem; margin-bottom: 3rem; font-weight: 400; animation: subtitleFlicker 5s infinite; }
+        @keyframes subtitleFlicker { 0%, 95%, 100% { opacity: 1; } 96% { opacity: 0.8; } 97% { opacity: 1; } 98% { opacity: 0.6; } 99% { opacity: 1; } }
         
-        @keyframes subtitleFlicker {
-            0%, 95%, 100% { opacity: 1; }
-            96% { opacity: 0.8; }
-            97% { opacity: 1; }
-            98% { opacity: 0.6; }
-            99% { opacity: 1; }
-        }
+        /* Email Form */
+        .email-form { display: flex; gap: 0.5rem; max-width: 450px; width: 100%; margin-bottom: 1rem; }
+        .email-input { flex: 1; padding: 1rem 1.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; color: var(--text); outline: none; transition: all 0.2s; }
+        .email-input:focus { border-color: var(--accent); box-shadow: 0 0 20px rgba(45, 212, 168, 0.2); }
+        .email-input::placeholder { color: var(--text-dim); }
         
-        .cta-button { 
-            display: inline-flex; align-items: center; gap: 0.75rem; 
-            background: var(--accent); color: var(--bg); 
-            padding: 1rem 2rem; font-family: 'JetBrains Mono', monospace; 
-            font-size: 0.95rem; font-weight: 600; text-decoration: none; 
-            border-radius: 4px; transition: all 0.2s; border: none; cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: buttonScan 3s infinite;
-        }
-        
-        @keyframes buttonScan {
-            0%, 60%, 100% { left: -100%; }
-            80% { left: 100%; }
-        }
-        
+        .cta-button { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--accent); color: var(--bg); padding: 1rem 2rem; font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 600; text-decoration: none; border-radius: 4px; transition: all 0.2s; border: none; cursor: pointer; position: relative; overflow: hidden; }
+        .cta-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); animation: buttonScan 3s infinite; }
+        @keyframes buttonScan { 0%, 60%, 100% { left: -100%; } 80% { left: 100%; } }
         .cta-button:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 0 30px rgba(45, 212, 168, 0.4); }
+        .cta-button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
         .cta-button svg { width: 18px; height: 18px; transition: transform 0.2s; }
         .cta-button:hover svg { transform: translateX(4px); }
         
-        .social-proof { margin-top: 2rem; color: var(--text-dim); font-size: 0.85rem; position: relative; }
-        .social-proof::before { 
-            content: ''; 
-            position: absolute;
-            left: -20px; top: 50%;
-            width: 8px; height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
+        .form-message { font-size: 0.85rem; margin-top: 0.5rem; min-height: 1.5rem; }
+        .form-message.success { color: var(--accent); }
+        .form-message.error { color: #ff4757; }
         
-        @keyframes pulse {
-            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(45, 212, 168, 0.7); }
-            50% { opacity: 0.8; box-shadow: 0 0 0 10px rgba(45, 212, 168, 0); }
-        }
+        .social-proof { margin-top: 1.5rem; color: var(--text-dim); font-size: 0.85rem; position: relative; }
+        .social-proof::before { content: ''; position: absolute; left: -20px; top: 50%; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(45, 212, 168, 0.7); } 50% { opacity: 0.8; box-shadow: 0 0 0 10px rgba(45, 212, 168, 0); } }
         
-        /* Distortion lines */
-        .distortion-line {
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(255,0,64,0.5), rgba(0,255,255,0.5), transparent);
-            animation: distortionMove 8s infinite;
-            opacity: 0;
-        }
-        
-        @keyframes distortionMove {
-            0%, 90%, 100% { opacity: 0; transform: translateY(0); }
-            92% { opacity: 1; }
-            95% { opacity: 1; transform: translateY(100vh); }
-            96% { opacity: 0; }
-        }
-        
+        .distortion-line { position: absolute; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, rgba(255,0,64,0.5), rgba(0,255,255,0.5), transparent); animation: distortionMove 8s infinite; opacity: 0; }
+        @keyframes distortionMove { 0%, 90%, 100% { opacity: 0; transform: translateY(0); } 92% { opacity: 1; } 95% { opacity: 1; transform: translateY(100vh); } 96% { opacity: 0; } }
         .distortion-line:nth-child(2) { animation-delay: 3s; }
         .distortion-line:nth-child(3) { animation-delay: 6s; }
-
+        
         .features { text-align: center; }
         .features h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.02em; }
         .features .subtitle { color: var(--text-dim); margin-bottom: 4rem; }
@@ -161,63 +86,28 @@
         .feature { text-align: center; position: relative; }
         .feature h3 { color: var(--accent); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
         .feature p { color: var(--text-dim); font-size: 0.9rem; }
-        
-        .feature::before {
-            content: '';
-            position: absolute;
-            top: -10px; left: 50%;
-            transform: translateX(-50%);
-            width: 40px; height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            animation: featureLine 2s infinite;
-        }
-        
-        @keyframes featureLine {
-            0%, 100% { opacity: 0.3; width: 40px; }
-            50% { opacity: 1; width: 60px; }
-        }
+        .feature::before { content: ''; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 40px; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); animation: featureLine 2s infinite; }
+        @keyframes featureLine { 0%, 100% { opacity: 0.3; width: 40px; } 50% { opacity: 1; width: 60px; } }
         
         .how-it-works { text-align: center; min-height: 60vh; }
         .how-it-works h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.02em; }
         .how-it-works .subtitle { color: var(--text-dim); margin-bottom: 0.5rem; }
-        .how-it-works .show-link { 
-            color: var(--accent); text-decoration: none; transition: all 0.2s;
-            position: relative;
-        }
-        .how-it-works .show-link:hover { 
-            text-shadow: 0 0 10px var(--accent), -1px 0 #ff0040, 1px 0 #00ffff;
-        }
+        .how-it-works .show-link { color: var(--accent); text-decoration: none; transition: all 0.2s; position: relative; }
+        .how-it-works .show-link:hover { text-shadow: 0 0 10px var(--accent), -1px 0 #ff0040, 1px 0 #00ffff; }
         
         .trust { text-align: center; min-height: 40vh; }
         .trust .label { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 2rem; letter-spacing: 0.05em; }
         .trust-logos { display: flex; gap: 3rem; align-items: center; justify-content: center; opacity: 0.3; }
-        .trust-logo { 
-            width: 80px; height: 30px; 
-            background: var(--text); border-radius: 4px;
-            animation: logoGlitch 10s infinite;
-        }
+        .trust-logo { width: 80px; height: 30px; background: var(--text); border-radius: 4px; animation: logoGlitch 10s infinite; }
         .trust-logo:nth-child(2) { animation-delay: 2s; }
         .trust-logo:nth-child(3) { animation-delay: 4s; }
         .trust-logo:nth-child(4) { animation-delay: 6s; }
         .trust-logo:nth-child(5) { animation-delay: 8s; }
-        
-        @keyframes logoGlitch {
-            0%, 97%, 100% { transform: translate(0); filter: none; }
-            98% { transform: translate(-2px, 1px); filter: hue-rotate(90deg); }
-            99% { transform: translate(1px, -1px); filter: hue-rotate(-90deg); }
-        }
+        @keyframes logoGlitch { 0%, 97%, 100% { transform: translate(0); filter: none; } 98% { transform: translate(-2px, 1px); filter: hue-rotate(90deg); } 99% { transform: translate(1px, -1px); filter: hue-rotate(-90deg); } }
         
         .cta-section { text-align: center; min-height: 80vh; }
-        .cta-section h2 { 
-            font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; margin-bottom: 1rem;
-            animation: readyPulse 2s infinite;
-        }
-        
-        @keyframes readyPulse {
-            0%, 100% { text-shadow: none; }
-            50% { text-shadow: 0 0 40px rgba(255,255,255,0.3); }
-        }
-        
+        .cta-section h2 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; margin-bottom: 1rem; animation: readyPulse 2s infinite; }
+        @keyframes readyPulse { 0%, 100% { text-shadow: none; } 50% { text-shadow: 0 0 40px rgba(255,255,255,0.3); } }
         .cta-section .subtitle { color: var(--text-dim); margin-bottom: 2.5rem; }
         .no-cc { margin-top: 1.5rem; color: var(--text-dim); font-size: 0.85rem; }
         
@@ -226,14 +116,15 @@
         footer .copyright { color: var(--text-dim); font-size: 0.85rem; }
         
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .hero h1, .hero .subtitle, .hero .cta-button, .hero .social-proof { animation: fadeInUp 0.8s ease-out forwards, textGlitch 3s infinite 1s; }
-        .hero .subtitle { animation: fadeInUp 0.8s ease-out 0.1s forwards, subtitleFlicker 5s infinite 1s; }
-        .hero .cta-button { animation: fadeInUp 0.8s ease-out 0.2s forwards; }
-        .hero .social-proof { animation: fadeInUp 0.8s ease-out 0.3s forwards; }
+        .hero h1, .hero .subtitle, .hero .email-form, .hero .social-proof { animation: fadeInUp 0.8s ease-out forwards; }
+        .hero .subtitle { animation-delay: 0.1s; }
+        .hero .email-form { animation-delay: 0.2s; }
+        .hero .social-proof { animation-delay: 0.3s; }
         
         @media (max-width: 768px) { 
             nav { padding: 1rem 1.5rem; } 
             section { padding: 4rem 1.5rem; } 
+            .email-form { flex-direction: column; }
             .features-grid { grid-template-columns: 1fr; gap: 2.5rem; } 
             .trust-logos { flex-wrap: wrap; gap: 2rem; } 
             footer { flex-direction: column; gap: 1rem; text-align: center; } 
@@ -250,7 +141,14 @@
     <section class="hero">
         <h1>You already know<br><span class="highlight">why you're here.</span></h1>
         <p class="subtitle">The tool that changes everything. No explanations needed.</p>
-        <a href="mailto:a@aharoll.com?subject=Request Access" class="cta-button">Request Access<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg></a>
+        <div class="email-form" id="heroForm">
+            <input type="email" class="email-input" id="heroEmail" placeholder="your@email.com" required>
+            <button type="submit" class="cta-button" onclick="submitEmail('hero')">
+                Request Access
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            </button>
+        </div>
+        <p class="form-message" id="heroMessage"></p>
         <p class="social-proof">2,847 people joined this week</p>
     </section>
     
@@ -284,10 +182,67 @@
     <section class="cta-section">
         <h2>Ready?</h2>
         <p class="subtitle">Limited spots available.</p>
-        <a href="mailto:a@aharoll.com?subject=Early Access Request" class="cta-button">Get Early Access<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg></a>
+        <div class="email-form" id="ctaForm">
+            <input type="email" class="email-input" id="ctaEmail" placeholder="your@email.com" required>
+            <button type="submit" class="cta-button" onclick="submitEmail('cta')">
+                Get Early Access
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            </button>
+        </div>
+        <p class="form-message" id="ctaMessage"></p>
         <p class="no-cc">No credit card required</p>
     </section>
     
     <footer><div class="logo">aharoll</div><span class="copyright">© 2024</span></footer>
+
+    <script>
+        // REPLACE THIS URL with your Google Apps Script Web App URL
+        const GOOGLE_SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+        
+        async function submitEmail(formId) {
+            const emailInput = document.getElementById(formId + 'Email');
+            const messageEl = document.getElementById(formId + 'Message');
+            const button = emailInput.parentElement.querySelector('button');
+            const email = emailInput.value.trim();
+            
+            if (!email || !email.includes('@')) {
+                messageEl.textContent = 'Please enter a valid email';
+                messageEl.className = 'form-message error';
+                return;
+            }
+            
+            button.disabled = true;
+            button.innerHTML = 'Sending...';
+            
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, source: 'aharoll.com' })
+                });
+                
+                messageEl.textContent = 'You\'re in. We\'ll be in touch.';
+                messageEl.className = 'form-message success';
+                emailInput.value = '';
+            } catch (error) {
+                messageEl.textContent = 'Something went wrong. Try again.';
+                messageEl.className = 'form-message error';
+            }
+            
+            button.disabled = false;
+            button.innerHTML = formId === 'hero' ? 'Request Access <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>' : 'Get Early Access <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>';
+        }
+        
+        // Allow Enter key to submit
+        document.querySelectorAll('.email-input').forEach(input => {
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const formId = input.id.replace('Email', '');
+                    submitEmail(formId);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
