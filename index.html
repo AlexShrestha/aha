@@ -12,59 +12,282 @@
         :root { --bg: #0a0a0a; --text: #ffffff; --text-dim: #666666; --accent: #2dd4a8; --accent-hover: #34eabc; --yellow: #d4c82d; }
         html { scroll-behavior: smooth; }
         body { font-family: 'JetBrains Mono', monospace; background-color: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; overflow-x: hidden; }
-        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 50px 50px; pointer-events: none; z-index: -1; }
+        
+        /* Scan lines overlay */
+        body::before { 
+            content: ''; 
+            position: fixed; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.15) 2px,
+                rgba(0, 0, 0, 0.15) 4px
+            );
+            pointer-events: none; 
+            z-index: 1000;
+            animation: scanFlicker 0.1s infinite;
+        }
+        
+        @keyframes scanFlicker {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.35; }
+        }
+        
+        /* Noise grain overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 999;
+        }
+
         nav { position: fixed; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 3rem; z-index: 100; background: linear-gradient(to bottom, var(--bg) 0%, transparent 100%); }
         .logo { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; }
         .login-link { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
         .login-link:hover { color: var(--text); }
-        section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 6rem 2rem; }
+        
+        section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 6rem 2rem; position: relative; }
+        
         .hero { text-align: center; }
-        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.03em; }
-        .hero h1 .highlight { color: var(--yellow); }
-        .hero .subtitle { color: var(--text-dim); font-size: 1rem; margin-bottom: 3rem; font-weight: 400; }
-        .cta-button { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--accent); color: var(--bg); padding: 1rem 2rem; font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 600; text-decoration: none; border-radius: 4px; transition: all 0.2s; border: none; cursor: pointer; }
-        .cta-button:hover { background: var(--accent-hover); transform: translateY(-2px); }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.03em; position: relative; }
+        
+        /* Glitch effect on hero title */
+        .hero h1 { animation: textGlitch 3s infinite; }
+        
+        @keyframes textGlitch {
+            0%, 92%, 100% { text-shadow: none; transform: translate(0); }
+            93% { text-shadow: -2px 0 #ff0040, 2px 0 #00ffff; transform: translate(-1px, 0); }
+            94% { text-shadow: 2px 0 #ff0040, -2px 0 #00ffff; transform: translate(1px, 0); }
+            95% { text-shadow: none; transform: translate(0); }
+            96% { text-shadow: -1px 0 #ff0040, 1px 0 #00ffff; transform: translate(0, -1px); }
+            97% { text-shadow: none; transform: translate(0); }
+        }
+        
+        .hero h1 .highlight { color: var(--yellow); display: inline-block; animation: rgbShift 4s infinite; }
+        
+        @keyframes rgbShift {
+            0%, 90%, 100% { text-shadow: none; filter: none; }
+            91% { text-shadow: -2px 0 #ff0040, 2px 0 #00ffff; }
+            92% { text-shadow: 2px 0 #ff0040, -2px 0 #00ffff; filter: brightness(1.2); }
+            93% { text-shadow: 0 -1px #ff0040, 0 1px #00ffff; }
+            94% { text-shadow: none; filter: none; }
+        }
+        
+        .hero .subtitle { color: var(--text-dim); font-size: 1rem; margin-bottom: 3rem; font-weight: 400; animation: subtitleFlicker 5s infinite; }
+        
+        @keyframes subtitleFlicker {
+            0%, 95%, 100% { opacity: 1; }
+            96% { opacity: 0.8; }
+            97% { opacity: 1; }
+            98% { opacity: 0.6; }
+            99% { opacity: 1; }
+        }
+        
+        .cta-button { 
+            display: inline-flex; align-items: center; gap: 0.75rem; 
+            background: var(--accent); color: var(--bg); 
+            padding: 1rem 2rem; font-family: 'JetBrains Mono', monospace; 
+            font-size: 0.95rem; font-weight: 600; text-decoration: none; 
+            border-radius: 4px; transition: all 0.2s; border: none; cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: buttonScan 3s infinite;
+        }
+        
+        @keyframes buttonScan {
+            0%, 60%, 100% { left: -100%; }
+            80% { left: 100%; }
+        }
+        
+        .cta-button:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 0 30px rgba(45, 212, 168, 0.4); }
         .cta-button svg { width: 18px; height: 18px; transition: transform 0.2s; }
         .cta-button:hover svg { transform: translateX(4px); }
-        .social-proof { margin-top: 2rem; color: var(--text-dim); font-size: 0.85rem; }
+        
+        .social-proof { margin-top: 2rem; color: var(--text-dim); font-size: 0.85rem; position: relative; }
+        .social-proof::before { 
+            content: ''; 
+            position: absolute;
+            left: -20px; top: 50%;
+            width: 8px; height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(45, 212, 168, 0.7); }
+            50% { opacity: 0.8; box-shadow: 0 0 0 10px rgba(45, 212, 168, 0); }
+        }
+        
+        /* Distortion lines */
+        .distortion-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255,0,64,0.5), rgba(0,255,255,0.5), transparent);
+            animation: distortionMove 8s infinite;
+            opacity: 0;
+        }
+        
+        @keyframes distortionMove {
+            0%, 90%, 100% { opacity: 0; transform: translateY(0); }
+            92% { opacity: 1; }
+            95% { opacity: 1; transform: translateY(100vh); }
+            96% { opacity: 0; }
+        }
+        
+        .distortion-line:nth-child(2) { animation-delay: 3s; }
+        .distortion-line:nth-child(3) { animation-delay: 6s; }
+
         .features { text-align: center; }
         .features h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.02em; }
         .features .subtitle { color: var(--text-dim); margin-bottom: 4rem; }
         .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem; max-width: 900px; margin: 0 auto; }
-        .feature { text-align: center; }
+        .feature { text-align: center; position: relative; }
         .feature h3 { color: var(--accent); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
         .feature p { color: var(--text-dim); font-size: 0.9rem; }
+        
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: -10px; left: 50%;
+            transform: translateX(-50%);
+            width: 40px; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            animation: featureLine 2s infinite;
+        }
+        
+        @keyframes featureLine {
+            0%, 100% { opacity: 0.3; width: 40px; }
+            50% { opacity: 1; width: 60px; }
+        }
+        
         .how-it-works { text-align: center; min-height: 60vh; }
         .how-it-works h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.02em; }
         .how-it-works .subtitle { color: var(--text-dim); margin-bottom: 0.5rem; }
-        .how-it-works .show-link { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
-        .how-it-works .show-link:hover { opacity: 0.8; }
+        .how-it-works .show-link { 
+            color: var(--accent); text-decoration: none; transition: all 0.2s;
+            position: relative;
+        }
+        .how-it-works .show-link:hover { 
+            text-shadow: 0 0 10px var(--accent), -1px 0 #ff0040, 1px 0 #00ffff;
+        }
+        
         .trust { text-align: center; min-height: 40vh; }
         .trust .label { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 2rem; letter-spacing: 0.05em; }
         .trust-logos { display: flex; gap: 3rem; align-items: center; justify-content: center; opacity: 0.3; }
-        .trust-logo { width: 80px; height: 30px; background: var(--text); border-radius: 4px; }
+        .trust-logo { 
+            width: 80px; height: 30px; 
+            background: var(--text); border-radius: 4px;
+            animation: logoGlitch 10s infinite;
+        }
+        .trust-logo:nth-child(2) { animation-delay: 2s; }
+        .trust-logo:nth-child(3) { animation-delay: 4s; }
+        .trust-logo:nth-child(4) { animation-delay: 6s; }
+        .trust-logo:nth-child(5) { animation-delay: 8s; }
+        
+        @keyframes logoGlitch {
+            0%, 97%, 100% { transform: translate(0); filter: none; }
+            98% { transform: translate(-2px, 1px); filter: hue-rotate(90deg); }
+            99% { transform: translate(1px, -1px); filter: hue-rotate(-90deg); }
+        }
+        
         .cta-section { text-align: center; min-height: 80vh; }
-        .cta-section h2 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; margin-bottom: 1rem; }
+        .cta-section h2 { 
+            font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; margin-bottom: 1rem;
+            animation: readyPulse 2s infinite;
+        }
+        
+        @keyframes readyPulse {
+            0%, 100% { text-shadow: none; }
+            50% { text-shadow: 0 0 40px rgba(255,255,255,0.3); }
+        }
+        
         .cta-section .subtitle { color: var(--text-dim); margin-bottom: 2.5rem; }
         .no-cc { margin-top: 1.5rem; color: var(--text-dim); font-size: 0.85rem; }
+        
         footer { padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); }
         footer .logo { color: var(--text-dim); font-weight: 500; }
         footer .copyright { color: var(--text-dim); font-size: 0.85rem; }
+        
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .hero h1, .hero .subtitle, .hero .cta-button, .hero .social-proof { animation: fadeInUp 0.8s ease-out forwards; }
-        .hero .subtitle { animation-delay: 0.1s; }
-        .hero .cta-button { animation-delay: 0.2s; }
-        .hero .social-proof { animation-delay: 0.3s; }
-        @media (max-width: 768px) { nav { padding: 1rem 1.5rem; } section { padding: 4rem 1.5rem; } .features-grid { grid-template-columns: 1fr; gap: 2.5rem; } .trust-logos { flex-wrap: wrap; gap: 2rem; } footer { flex-direction: column; gap: 1rem; text-align: center; } }
+        .hero h1, .hero .subtitle, .hero .cta-button, .hero .social-proof { animation: fadeInUp 0.8s ease-out forwards, textGlitch 3s infinite 1s; }
+        .hero .subtitle { animation: fadeInUp 0.8s ease-out 0.1s forwards, subtitleFlicker 5s infinite 1s; }
+        .hero .cta-button { animation: fadeInUp 0.8s ease-out 0.2s forwards; }
+        .hero .social-proof { animation: fadeInUp 0.8s ease-out 0.3s forwards; }
+        
+        @media (max-width: 768px) { 
+            nav { padding: 1rem 1.5rem; } 
+            section { padding: 4rem 1.5rem; } 
+            .features-grid { grid-template-columns: 1fr; gap: 2.5rem; } 
+            .trust-logos { flex-wrap: wrap; gap: 2rem; } 
+            footer { flex-direction: column; gap: 1rem; text-align: center; } 
+        }
     </style>
 </head>
 <body>
+    <div class="distortion-line"></div>
+    <div class="distortion-line"></div>
+    <div class="distortion-line"></div>
+    
     <nav><div class="logo">aharoll</div><a href="mailto:a@aharoll.com" class="login-link">login</a></nav>
-    <section class="hero"><h1>You already know<br><span class="highlight">why you're here.</span></h1><p class="subtitle">The tool that changes everything. No explanations needed.</p><a href="mailto:a@aharoll.com?subject=Request Access" class="cta-button">Request Access<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg></a><p class="social-proof">2,847 people joined this week</p></section>
-    <section class="features"><h2>Built different.</h2><p class="subtitle">You'll understand when you try it.</p><div class="features-grid"><div class="feature"><h3>Fast</h3><p>Minutes, not hours.</p></div><div class="feature"><h3>Simple</h3><p>No learning curve.</p></div><div class="feature"><h3>Powerful</h3><p>Results speak.</p></div></div></section>
-    <section class="how-it-works"><h2>How does it work?</h2><p class="subtitle">We could explain.</p><p>But it's easier to just <a href="mailto:a@aharoll.com?subject=Show me" class="show-link">show you.</a></p></section>
-    <section class="trust"><p class="label">Trusted by the most amazing teams</p><div class="trust-logos"><div class="trust-logo"></div><div class="trust-logo"></div><div class="trust-logo"></div><div class="trust-logo"></div><div class="trust-logo"></div></div></section>
-    <section class="cta-section"><h2>Ready?</h2><p class="subtitle">Limited spots available.</p><a href="mailto:a@aharoll.com?subject=Early Access Request" class="cta-button">Get Early Access<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg></a><p class="no-cc">No credit card required</p></section>
+    
+    <section class="hero">
+        <h1>You already know<br><span class="highlight">why you're here.</span></h1>
+        <p class="subtitle">The tool that changes everything. No explanations needed.</p>
+        <a href="mailto:a@aharoll.com?subject=Request Access" class="cta-button">Request Access<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg></a>
+        <p class="social-proof">2,847 people joined this week</p>
+    </section>
+    
+    <section class="features">
+        <h2>Built different.</h2>
+        <p class="subtitle">You'll understand when you try it.</p>
+        <div class="features-grid">
+            <div class="feature"><h3>Fast</h3><p>Minutes, not hours.</p></div>
+            <div class="feature"><h3>Simple</h3><p>No learning curve.</p></div>
+            <div class="feature"><h3>Powerful</h3><p>Results speak.</p></div>
+        </div>
+    </section>
+    
+    <section class="how-it-works">
+        <h2>How does it work?</h2>
+        <p class="subtitle">We could explain.</p>
+        <p>But it's easier to just <a href="mailto:a@aharoll.com?subject=Show me" class="show-link">show you.</a></p>
+    </section>
+    
+    <section class="trust">
+        <p class="label">Trusted by the most amazing teams</p>
+        <div class="trust-logos">
+            <div class="trust-logo"></div>
+            <div class="trust-logo"></div>
+            <div class="trust-logo"></div>
+            <div class="trust-logo"></div>
+            <div class="trust-logo"></div>
+        </div>
+    </section>
+    
+    <section class="cta-section">
+        <h2>Ready?</h2>
+        <p class="subtitle">Limited spots available.</p>
+        <a href="mailto:a@aharoll.com?subject=Early Access Request" class="cta-button">Get Early Access<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg></a>
+        <p class="no-cc">No credit card required</p>
+    </section>
+    
     <footer><div class="logo">aharoll</div><span class="copyright">© 2024</span></footer>
 </body>
 </html>
