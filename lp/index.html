@@ -477,9 +477,19 @@
 
         /* Fade in */
         .fade-up {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* For sections below the fold, start hidden */
+        .statement .fade-up,
+        .work .fade-up,
+        .process .fade-up,
+        .clients .fade-up,
+        .cta .fade-up {
             opacity: 0;
             transform: translateY(20px);
-            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .fade-up.visible {
@@ -493,7 +503,7 @@
         <div class="container">
             <div class="header-inner">
                 <div class="logo">AhaRoll</div>
-                <a href="mailto:ultraskela@gmail.com" class="header-cta">Get in touch</a>
+                <a href="/cdn-cgi/l/email-protection#2e5b425a5c4f5d454b424f6e49434f4742004d4143" class="header-cta">Get in touch</a>
             </div>
         </div>
     </header>
@@ -501,34 +511,40 @@
     <section class="hero">
         <div class="hero-grid">
             <div class="hero-grid-fade"></div>
+            <!-- Fresh produce / Food -->
             <div class="hero-grid-item">
                 <video autoplay muted loop playsinline>
-                    <source src="https://cdn.coverr.co/videos/coverr-using-bronzer-2166/360p.mp4" type="video/mp4">
+                    <source src="https://cdn.coverr.co/videos/user-ai-generation-L43tT5B3KrIr/360p.mp4" type="video/mp4">
                 </video>
             </div>
+            <!-- Coffee / Beverage -->
             <div class="hero-grid-item">
                 <video autoplay muted loop playsinline>
-                    <source src="https://cdn.coverr.co/videos/coverr-woman-opening-mascara-1350/360p.mp4" type="video/mp4">
+                    <source src="https://cdn.coverr.co/videos/user-ai-generation-lZ8wOYvP6xmM/360p.mp4" type="video/mp4">
                 </video>
             </div>
+            <!-- Fresh strawberries / Food -->
             <div class="hero-grid-item">
                 <video autoplay muted loop playsinline>
-                    <source src="https://cdn.coverr.co/videos/coverr-putting-mascara-on-5217/360p.mp4" type="video/mp4">
+                    <source src="https://cdn.coverr.co/videos/user-ai-generation-ngsxXtPfMAES/360p.mp4" type="video/mp4">
                 </video>
             </div>
+            <!-- Fruit / Fresh produce -->
             <div class="hero-grid-item">
                 <video autoplay muted loop playsinline>
-                    <source src="https://cdn.coverr.co/videos/coverr-putting-on-mascara-1839/360p.mp4" type="video/mp4">
+                    <source src="https://cdn.coverr.co/videos/user-ai-generation-n0W52lgJWGzJ/360p.mp4" type="video/mp4">
                 </video>
             </div>
+            <!-- Artichoke / Fresh produce -->
             <div class="hero-grid-item">
                 <video autoplay muted loop playsinline>
-                    <source src="https://cdn.coverr.co/videos/coverr-scrolling-on-a-computer-screen-8376/360p.mp4" type="video/mp4">
+                    <source src="https://cdn.coverr.co/videos/user-ai-generation-uHu1RZcN43gR/360p.mp4" type="video/mp4">
                 </video>
             </div>
+            <!-- Asparagus / Fresh produce -->
             <div class="hero-grid-item">
                 <video autoplay muted loop playsinline>
-                    <source src="https://cdn.coverr.co/videos/coverr-a-woman-strolls-at-the-street-market/360p.mp4" type="video/mp4">
+                    <source src="https://cdn.coverr.co/videos/user-ai-generation-FGQBMQjbLrlH/360p.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
@@ -536,7 +552,7 @@
             <div class="hero-content">
                 <h1 class="fade-up">Video on <em>every</em> product page.</h1>
                 <p class="hero-sub fade-up">Your competitors already have it. Product video increases conversions by 80%. You know this — you just couldn't do it at scale. Until now.</p>
-                <a href="mailto:ultraskela@gmail.com" class="btn fade-up">Start a pilot</a>
+                <a href="/cdn-cgi/l/email-protection#90e5fce4e2f1e3fbf5fcf1d0f7fdf1f9fcbef3fffd" class="btn fade-up">Start a pilot</a>
             </div>
         </div>
     </section>
@@ -628,7 +644,7 @@
         <div class="container">
             <h2 class="fade-up">Ready to close the gap?</h2>
             <p class="fade-up">Start with a 2-week pilot. Pick 50–200 SKUs. See what's possible.</p>
-            <a href="mailto:ultraskela@gmail.com" class="btn fade-up">Let's talk</a>
+            <a href="/cdn-cgi/l/email-protection#eb9e879f998a98808e878aab8c868a8287c5888486" class="btn fade-up">Let's talk</a>
         </div>
     </section>
 
@@ -641,16 +657,8 @@
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-    </script>
-</body>
-</html>
+  
