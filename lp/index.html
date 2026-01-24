@@ -247,9 +247,9 @@
             color: var(--fg-muted);
         }
 
-        /* Work section */
+        /* Work section - Disruptive before/after */
         .work {
-            padding: 6rem 0 8rem;
+            padding: 0;
             border-top: 1px solid var(--border);
         }
 
@@ -271,62 +271,212 @@
             font-weight: 400;
         }
 
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
+        .work-hero {
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            overflow: hidden;
         }
 
-        .work-item {
-            aspect-ratio: 16/9;
-            background: var(--bg-elevated);
-            border: 1px solid var(--border);
+        .work-split {
+            flex: 1;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+        }
+
+        .work-split-before {
+            background: var(--bg-elevated);
+        }
+
+        .work-split-after {
+            background: var(--bg);
+        }
+
+        .work-split-before::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -50px;
+            width: 100px;
+            height: 100%;
+            background: var(--bg);
+            transform: skewX(-3deg);
+            z-index: 3;
+        }
+
+        .work-split-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .work-split-before .work-split-content {
+            filter: grayscale(40%) brightness(0.9);
+        }
+
+        .work-split-media {
+            width: 80%;
+            max-width: 400px;
+            aspect-ratio: 4/5;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
             position: relative;
             overflow: hidden;
-            transition: border-color 0.3s ease;
         }
 
-        .work-item:hover {
-            border-color: var(--fg-subtle);
+        .work-split-media img,
+        .work-split-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .work-item-play {
-            width: 60px;
-            height: 60px;
-            border: 1px solid var(--fg-subtle);
-            border-radius: 50%;
+        .work-split-before .work-split-media::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.1) 2px,
+                rgba(0, 0, 0, 0.1) 4px
+            );
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .work-label {
+            position: absolute;
+            top: 3rem;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--fg-subtle);
+            z-index: 4;
+        }
+
+        .work-split-before .work-label { right: 4rem; }
+        .work-split-after .work-label { left: 4rem; }
+
+        .work-big-text {
+            position: absolute;
+            bottom: 3rem;
+            font-family: var(--serif);
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 400;
+            z-index: 4;
+            max-width: 280px;
+            line-height: 1.2;
+        }
+
+        .work-split-before .work-big-text {
+            right: 4rem;
+            text-align: right;
+            color: var(--fg-muted);
+        }
+
+        .work-split-after .work-big-text {
+            left: 4rem;
+            color: var(--fg);
+        }
+
+        .work-big-text em { font-style: italic; }
+
+        .work-static-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-12deg);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #fff;
+            background: rgba(200, 50, 50, 0.9);
+            padding: 0.4rem 1.2rem;
+            z-index: 5;
+            font-weight: 600;
+        }
+
+        .work-thumbs {
             display: flex;
-            align-items: center;
+            gap: 1rem;
+            padding: 3rem 2rem;
+            background: var(--bg-elevated);
+            border-top: 1px solid var(--border);
+            overflow-x: auto;
             justify-content: center;
+        }
+
+        .work-thumb {
+            flex-shrink: 0;
+            width: 180px;
+            aspect-ratio: 16/9;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .work-item:hover .work-item-play {
-            background: var(--fg);
-            border-color: var(--fg);
+        .work-thumb:hover {
+            border-color: var(--fg-muted);
+            transform: translateY(-4px);
         }
 
-        .work-item-play svg {
-            width: 16px;
-            height: 16px;
-            fill: var(--fg-muted);
-            margin-left: 3px;
-            transition: fill 0.3s ease;
+        .work-thumb video,
+        .work-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .work-item:hover .work-item-play svg {
-            fill: var(--bg);
-        }
-
-        .work-item-label {
+        .work-thumb-label {
             position: absolute;
-            bottom: 1.2rem;
-            left: 1.2rem;
-            font-size: 0.8rem;
-            color: var(--fg-subtle);
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0.5rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        @media (max-width: 900px) {
+            .work-hero {
+                flex-direction: column;
+                min-height: auto;
+            }
+            .work-split {
+                min-height: 50vh;
+            }
+            .work-split-before::after {
+                display: none;
+            }
+            .work-label {
+                left: 2rem !important;
+                right: auto !important;
+                top: 2rem;
+            }
+            .work-big-text {
+                left: 2rem !important;
+                right: 2rem !important;
+                text-align: left !important;
+                bottom: 2rem;
+                max-width: none;
+            }
         }
 
         /* How it works */
@@ -479,22 +629,6 @@
         .fade-up {
             opacity: 1;
             transform: translateY(0);
-            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        /* For sections below the fold, start hidden */
-        .statement .fade-up,
-        .work .fade-up,
-        .process .fade-up,
-        .clients .fade-up,
-        .cta .fade-up {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
 </head>
@@ -511,40 +645,40 @@
     <section class="hero">
         <div class="hero-grid">
             <div class="hero-grid-fade"></div>
-            <!-- Fresh produce / Food -->
+            <!-- Fashion suit -->
             <div class="hero-grid-item">
                 <video autoplay muted loop playsinline>
-                    <source src="https://cdn.coverr.co/videos/user-ai-generation-L43tT5B3KrIr/360p.mp4" type="video/mp4">
+                    <source src="https://cdn.coverr.co/videos/user-ai-generation-J8YKqrHbGF7t/360p.mp4" type="video/mp4">
                 </video>
             </div>
-            <!-- Coffee / Beverage -->
+            <!-- Corduroy outfit -->
             <div class="hero-grid-item">
                 <video autoplay muted loop playsinline>
-                    <source src="https://cdn.coverr.co/videos/user-ai-generation-lZ8wOYvP6xmM/360p.mp4" type="video/mp4">
+                    <source src="https://cdn.coverr.co/videos/user-ai-generation-xdbPoyLCPjwq/360p.mp4" type="video/mp4">
                 </video>
             </div>
-            <!-- Fresh strawberries / Food -->
+            <!-- Fashion duo -->
             <div class="hero-grid-item">
                 <video autoplay muted loop playsinline>
-                    <source src="https://cdn.coverr.co/videos/user-ai-generation-ngsxXtPfMAES/360p.mp4" type="video/mp4">
+                    <source src="https://cdn.coverr.co/videos/user-ai-generation-95IqlCg9iwki/360p.mp4" type="video/mp4">
                 </video>
             </div>
-            <!-- Fruit / Fresh produce -->
+            <!-- Green blazer -->
             <div class="hero-grid-item">
                 <video autoplay muted loop playsinline>
-                    <source src="https://cdn.coverr.co/videos/user-ai-generation-n0W52lgJWGzJ/360p.mp4" type="video/mp4">
+                    <source src="https://cdn.coverr.co/videos/user-ai-generation-YbPk2NsnjntP/360p.mp4" type="video/mp4">
                 </video>
             </div>
-            <!-- Artichoke / Fresh produce -->
+            <!-- Striped suit -->
             <div class="hero-grid-item">
                 <video autoplay muted loop playsinline>
-                    <source src="https://cdn.coverr.co/videos/user-ai-generation-uHu1RZcN43gR/360p.mp4" type="video/mp4">
+                    <source src="https://cdn.coverr.co/videos/user-ai-generation-4u6KTwZOVa3Y/360p.mp4" type="video/mp4">
                 </video>
             </div>
-            <!-- Asparagus / Fresh produce -->
+            <!-- Desert fashion -->
             <div class="hero-grid-item">
                 <video autoplay muted loop playsinline>
-                    <source src="https://cdn.coverr.co/videos/user-ai-generation-FGQBMQjbLrlH/360p.mp4" type="video/mp4">
+                    <source src="https://cdn.coverr.co/videos/user-ai-generation-KTMRBOIVNjoz/360p.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
@@ -568,36 +702,50 @@
     </section>
 
     <section class="work">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label">Selected work</p>
-                <h2 class="section-title">What we deliver</h2>
+        <!-- Main before/after hero -->
+        <div class="work-hero">
+            <!-- BEFORE side -->
+            <div class="work-split work-split-before">
+                <span class="work-label">What you have</span>
+                <div class="work-split-content">
+                    <div class="work-split-media">
+                        <!-- Replace with client product photo -->
+                        <div style="width:100%;height:100%;background:var(--bg-subtle);display:flex;align-items:center;justify-content:center;color:var(--fg-subtle);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;">Photo</div>
+                        <span class="work-static-badge">Static</span>
+                    </div>
+                </div>
+                <p class="work-big-text">A photo.<br><em>That's it.</em></p>
             </div>
-            <div class="work-grid">
-                <div class="work-item fade-up">
-                    <div class="work-item-play">
-                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            
+            <!-- AFTER side -->
+            <div class="work-split work-split-after">
+                <span class="work-label">What you get</span>
+                <div class="work-split-content">
+                    <div class="work-split-media">
+                        <!-- Replace with your generated video -->
+                        <video autoplay muted loop playsinline>
+                            <source src="" type="video/mp4">
+                        </video>
+                        <div style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--fg-subtle);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;">Video</div>
                     </div>
-                    <span class="work-item-label">Product showcase</span>
                 </div>
-                <div class="work-item fade-up">
-                    <div class="work-item-play">
-                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
-                    <span class="work-item-label">PDP video</span>
-                </div>
-                <div class="work-item fade-up">
-                    <div class="work-item-play">
-                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
-                    <span class="work-item-label">Social ad</span>
-                </div>
-                <div class="work-item fade-up">
-                    <div class="work-item-play">
-                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
-                    <span class="work-item-label">Multi-market</span>
-                </div>
+                <p class="work-big-text">Video that <em>sells.</em></p>
+            </div>
+        </div>
+
+        <!-- Thumbnail strip with more examples -->
+        <div class="work-thumbs">
+            <div class="work-thumb">
+                <div style="width:100%;height:100%;background:var(--bg-subtle);display:flex;align-items:center;justify-content:center;color:var(--fg-subtle);font-size:0.6rem;">PDP</div>
+                <span class="work-thumb-label">Product page</span>
+            </div>
+            <div class="work-thumb">
+                <div style="width:100%;height:100%;background:var(--bg-subtle);display:flex;align-items:center;justify-content:center;color:var(--fg-subtle);font-size:0.6rem;">Social</div>
+                <span class="work-thumb-label">Social ad</span>
+            </div>
+            <div class="work-thumb">
+                <div style="width:100%;height:100%;background:var(--bg-subtle);display:flex;align-items:center;justify-content:center;color:var(--fg-subtle);font-size:0.6rem;">Multi</div>
+                <span class="work-thumb-label">Multi-market</span>
             </div>
         </div>
     </section>
