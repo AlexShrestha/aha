@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>AhaRoll — Video for Every Product</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0c0c0c;
+            --bg-elevated: #141414;
+            --bg-subtle: #1a1a1a;
+            --fg: #fafafa;
+            --fg-muted: #888;
+            --fg-subtle: #555;
+            --accent: #e8e8e8;
+            --border: #222;
+            --serif: 'Instrument Serif', Georgia, serif;
+            --sans: 'Inter', -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.6;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            background: rgba(12, 12, 12, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--serif);
+            font-size: 1.4rem;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        .header-cta {
+            font-size: 0.85rem;
+            color: var(--fg);
+            text-decoration: none;
+            padding: 0.6rem 1.4rem;
+            border: 1px solid var(--border);
+            transition: all 0.2s ease;
+        }
+
+        .header-cta:hover {
+            background: var(--fg);
+            color: var(--bg);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 0 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 550px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Video grid */
+        .hero-grid {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            display: grid;
+            grid-template-columns: repeat(2, 200px);
+            grid-template-rows: repeat(3, 120px);
+            gap: 12px;
+            z-index: 1;
+            opacity: 0.9;
+        }
+
+        .hero-grid-item {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-grid-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+        }
+
+        /* Fallback animated gradient for items without video */
+        .hero-grid-item.placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg,
+                var(--bg-elevated) 0%,
+                var(--bg-subtle) 50%,
+                var(--bg-elevated) 100%
+            );
+            background-size: 200% 200%;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% {
+                background-position: 0% 0%;
+            }
+            50% {
+                background-position: 100% 100%;
+            }
+        }
+
+        /* Stagger the grid items */
+        .hero-grid-item:nth-child(2) { transform: translateY(20px); }
+        .hero-grid-item:nth-child(3) { transform: translateY(-10px); }
+        .hero-grid-item:nth-child(4) { transform: translateY(30px); }
+        .hero-grid-item:nth-child(5) { transform: translateY(0px); }
+        .hero-grid-item:nth-child(6) { transform: translateY(15px); }
+        .hero-grid-item:nth-child(7) { transform: translateY(-5px); }
+
+        /* Fade edge */
+        .hero-grid-fade {
+            position: absolute;
+            top: 0;
+            left: -100px;
+            width: 150px;
+            height: 100%;
+            background: linear-gradient(to right, var(--bg) 0%, transparent 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        @media (max-width: 1100px) {
+            .hero-grid {
+                grid-template-columns: repeat(2, 160px);
+                grid-template-rows: repeat(3, 96px);
+                gap: 10px;
+                right: -40px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid {
+                display: none;
+            }
+        }
+
+        .hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 400;
+            line-height: 1.08;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+        }
+
+        .hero-sub {
+            font-size: 1.15rem;
+            color: var(--fg-muted);
+            max-width: 520px;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.2rem;
+            background: var(--fg);
+            color: var(--bg);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            background: var(--fg-muted);
+        }
+
+        /* Statement */
+        .statement {
+            padding: 8rem 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .statement-text {
+            font-family: var(--serif);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            line-height: 1.35;
+            max-width: 900px;
+            font-weight: 400;
+        }
+
+        .statement-text em {
+            font-style: italic;
+            color: var(--fg-muted);
+        }
+
+        /* Work section */
+        .work {
+            padding: 6rem 0 8rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--fg-subtle);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .work-item {
+            aspect-ratio: 16/9;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+
+        .work-item:hover {
+            border-color: var(--fg-subtle);
+        }
+
+        .work-item-play {
+            width: 60px;
+            height: 60px;
+            border: 1px solid var(--fg-subtle);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .work-item:hover .work-item-play {
+            background: var(--fg);
+            border-color: var(--fg);
+        }
+
+        .work-item-play svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--fg-muted);
+            margin-left: 3px;
+            transition: fill 0.3s ease;
+        }
+
+        .work-item:hover .work-item-play svg {
+            fill: var(--bg);
+        }
+
+        .work-item-label {
+            position: absolute;
+            bottom: 1.2rem;
+            left: 1.2rem;
+            font-size: 0.8rem;
+            color: var(--fg-subtle);
+        }
+
+        /* How it works */
+        .how {
+            padding: 8rem 0;
+            border-top: 1px solid var(--border);
+            background: var(--bg-elevated);
+        }
+
+        .how-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .how-step {
+            padding-right: 2rem;
+        }
+
+        .how-number {
+            font-family: var(--serif);
+            font-size: 3rem;
+            color: var(--fg-subtle);
+            margin-bottom: 1.5rem;
+            line-height: 1;
+        }
+
+        .how-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .how-desc {
+            font-size: 0.95rem;
+            color: var(--fg-muted);
+            line-height: 1.6;
+        }
+
+        /* Clients */
+        .clients {
+            padding: 6rem 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .clients-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--fg-subtle);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .clients-grid {
+            display: flex;
+            justify-content: center;
+            gap: 5rem;
+            flex-wrap: wrap;
+        }
+
+        .client-item {
+            font-size: 0.9rem;
+            color: var(--fg-muted);
+            letter-spacing: 0.02em;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 10rem 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-family: var(--serif);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            line-height: 1.15;
+        }
+
+        .cta p {
+            color: var(--fg-muted);
+            margin-bottom: 2.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-family: var(--serif);
+            font-size: 1rem;
+        }
+
+        .footer-copy {
+            font-size: 0.75rem;
+            color: var(--fg-subtle);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .how-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .how-step {
+                padding-right: 0;
+                padding-bottom: 2rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .how-step:last-child {
+                border-bottom: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 1.25rem;
+            }
+
+            .clients-grid {
+                gap: 2rem 3rem;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Fade in */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">AhaRoll</div>
+                <a href="mailto:ultraskela@gmail.com" class="header-cta">Get in touch</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-grid">
+            <div class="hero-grid-fade"></div>
+            <div class="hero-grid-item">
+                <video autoplay muted loop playsinline>
+                    <source src="https://cdn.coverr.co/videos/coverr-using-bronzer-2166/360p.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="hero-grid-item">
+                <video autoplay muted loop playsinline>
+                    <source src="https://cdn.coverr.co/videos/coverr-woman-opening-mascara-1350/360p.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="hero-grid-item">
+                <video autoplay muted loop playsinline>
+                    <source src="https://cdn.coverr.co/videos/coverr-putting-mascara-on-5217/360p.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="hero-grid-item">
+                <video autoplay muted loop playsinline>
+                    <source src="https://cdn.coverr.co/videos/coverr-putting-on-mascara-1839/360p.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="hero-grid-item">
+                <video autoplay muted loop playsinline>
+                    <source src="https://cdn.coverr.co/videos/coverr-scrolling-on-a-computer-screen-8376/360p.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="hero-grid-item">
+                <video autoplay muted loop playsinline>
+                    <source src="https://cdn.coverr.co/videos/coverr-a-woman-strolls-at-the-street-market/360p.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="fade-up">Video on <em>every</em> product page.</h1>
+                <p class="hero-sub fade-up">Your competitors already have it. Product video increases conversions by 80%. You know this — you just couldn't do it at scale. Until now.</p>
+                <a href="mailto:ultraskela@gmail.com" class="btn fade-up">Start a pilot</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="statement">
+        <div class="container">
+            <p class="statement-text fade-up">
+                You have thousands of products and a team that can't shoot thousands of videos. 
+                We turn your catalog into <em>ready-to-publish video</em> — accurate to your data, 
+                consistent with your brand, across every market and channel.
+            </p>
+        </div>
+    </section>
+
+    <section class="work">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Selected work</p>
+                <h2 class="section-title">What we deliver</h2>
+            </div>
+            <div class="work-grid">
+                <div class="work-item fade-up">
+                    <div class="work-item-play">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <span class="work-item-label">Product showcase</span>
+                </div>
+                <div class="work-item fade-up">
+                    <div class="work-item-play">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <span class="work-item-label">PDP video</span>
+                </div>
+                <div class="work-item fade-up">
+                    <div class="work-item-play">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <span class="work-item-label">Social ad</span>
+                </div>
+                <div class="work-item fade-up">
+                    <div class="work-item-play">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <span class="work-item-label">Multi-market</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">How it works</p>
+                <h2 class="section-title">From catalog to video in days, not months</h2>
+            </div>
+            <div class="how-grid">
+                <div class="how-step fade-up">
+                    <div class="how-number">01</div>
+                    <h3 class="how-title">Connect your catalog</h3>
+                    <p class="how-desc">Shopify, Amazon, or any product feed. We pull your SKUs, images, and attributes automatically.</p>
+                </div>
+                <div class="how-step fade-up">
+                    <div class="how-number">02</div>
+                    <h3 class="how-title">We create the templates</h3>
+                    <p class="how-desc">Custom video templates locked to your brand. Every product gets the same quality — whether it's SKU #1 or #10,000.</p>
+                </div>
+                <div class="how-step fade-up">
+                    <div class="how-number">03</div>
+                    <h3 class="how-title">Review and publish</h3>
+                    <p class="how-desc">Approve in batches. Export for PDP, ads, social — any format, any market. Done.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="clients">
+        <div class="container">
+            <p class="clients-label">Working with teams across</p>
+            <div class="clients-grid">
+                <span class="client-item">Food & Beverage</span>
+                <span class="client-item">Home & Furniture</span>
+                <span class="client-item">Consumer Electronics</span>
+                <span class="client-item">Health & Wellness</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2 class="fade-up">Ready to close the gap?</h2>
+            <p class="fade-up">Start with a 2-week pilot. Pick 50–200 SKUs. See what's possible.</p>
+            <a href="mailto:ultraskela@gmail.com" class="btn fade-up">Let's talk</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-logo">AhaRoll</div>
+                <p class="footer-copy">© 2025 AhaRoll</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
