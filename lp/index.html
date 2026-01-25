@@ -187,8 +187,22 @@
         }
 
         @media (max-width: 900px) {
+            .hero {
+                padding-top: 6rem;
+            }
             .hero-grid {
-                display: none;
+                position: relative;
+                right: auto;
+                top: auto;
+                transform: none;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(2, 80px);
+                gap: 8px;
+                margin-top: 2rem;
+                width: 100%;
+            }
+            .hero-content {
+                max-width: 100%;
             }
         }
 
@@ -464,27 +478,67 @@
         }
 
         @media (max-width: 900px) {
+            .work {
+                padding: 4rem 1rem;
+            }
             .work-hero {
                 flex-direction: column;
                 min-height: auto;
+                gap: 1rem;
             }
             .work-split {
-                min-height: 50vh;
+                width: 100%;
+                min-height: auto;
+                padding: 1.5rem;
             }
             .work-split-before::after {
                 display: none;
             }
+            .work-split-before .work-split-media::before {
+                /* Remove scanlines on mobile */
+                display: none;
+            }
             .work-label {
-                left: 2rem !important;
+                position: relative;
+                left: auto !important;
                 right: auto !important;
-                top: 2rem;
+                top: auto;
+                margin-bottom: 1rem;
+                font-size: 0.65rem;
+            }
+            .work-split-content {
+                position: relative;
+                display: flex;
+                justify-content: center;
+            }
+            .work-split-media {
+                width: 100%;
+                max-width: 280px;
+                aspect-ratio: 4/5;
             }
             .work-big-text {
-                left: 2rem !important;
-                right: 2rem !important;
-                text-align: left !important;
-                bottom: 2rem;
+                position: relative;
+                left: auto !important;
+                right: auto !important;
+                bottom: auto;
+                text-align: center !important;
+                margin-top: 1rem;
+                font-size: 1.5rem;
                 max-width: none;
+            }
+            .work-static-badge {
+                font-size: 0.6rem;
+                padding: 0.3rem 0.6rem;
+            }
+            .work-thumbs {
+                justify-content: flex-start;
+                gap: 0.75rem;
+                padding: 1rem;
+                margin-top: 1rem;
+            }
+            .work-thumb {
+                min-width: 100px;
+                height: 120px;
             }
         }
 
