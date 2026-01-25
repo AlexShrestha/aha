@@ -435,6 +435,15 @@
             transform: translateY(-4px);
         }
 
+        .work-thumb.active {
+            border-color: var(--fg);
+            box-shadow: 0 0 0 1px var(--fg);
+        }
+
+        .work-thumb {
+            cursor: pointer;
+        }
+
         .work-thumb video,
         .work-thumb img {
             width: 100%;
@@ -709,7 +718,7 @@
                 <span class="work-label">What you have</span>
                 <div class="work-split-content">
                     <div class="work-split-media">
-                        <img src="/lp/assets/sandwich_before.jpg" alt="Product photo">
+                        <img id="main-before" src="/lp/assets/sandwich_before.jpg" alt="Product photo">
                         <span class="work-static-badge">Static</span>
                     </div>
                 </div>
@@ -721,7 +730,7 @@
                 <span class="work-label">What you get</span>
                 <div class="work-split-content">
                     <div class="work-split-media">
-                        <video autoplay muted loop playsinline>
+                        <video id="main-after" autoplay muted loop playsinline>
                             <source src="/lp/assets/sandwich_after.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -730,28 +739,57 @@
             </div>
         </div>
 
-        <!-- Thumbnail strip with more examples -->
+        <!-- Thumbnail strip - clickable -->
         <div class="work-thumbs">
-            <div class="work-thumb">
+            <div class="work-thumb active" data-before="/lp/assets/sandwich_before.jpg" data-after="/lp/assets/sandwich_after.mp4">
+                <video autoplay muted loop playsinline>
+                    <source src="/lp/assets/sandwich_after.mp4" type="video/mp4">
+                </video>
+                <span class="work-thumb-label">Food</span>
+            </div>
+            <div class="work-thumb" data-before="/lp/assets/shoe_before.jpg" data-after="/lp/assets/shoe_after.mp4">
                 <video autoplay muted loop playsinline>
                     <source src="/lp/assets/shoe_after.mp4" type="video/mp4">
                 </video>
                 <span class="work-thumb-label">Footwear</span>
             </div>
-            <div class="work-thumb">
+            <div class="work-thumb" data-before="/lp/assets/sofa_before.jpg" data-after="/lp/assets/sofa_after.mp4">
                 <video autoplay muted loop playsinline>
                     <source src="/lp/assets/sofa_after.mp4" type="video/mp4">
                 </video>
                 <span class="work-thumb-label">Furniture</span>
             </div>
-            <div class="work-thumb">
+            <div class="work-thumb" data-before="/lp/assets/croisant_b.jpg" data-after="/lp/assets/croisant_a.mp4">
                 <video autoplay muted loop playsinline>
                     <source src="/lp/assets/croisant_a.mp4" type="video/mp4">
                 </video>
-                <span class="work-thumb-label">Food</span>
+                <span class="work-thumb-label">Bakery</span>
             </div>
         </div>
     </section>
+    
+    <script>
+    // Thumbnail click to swap main display
+    document.querySelectorAll('.work-thumb').forEach(thumb => {
+        thumb.addEventListener('click', function() {
+            const beforeSrc = this.dataset.before;
+            const afterSrc = this.dataset.after;
+            
+            // Update main before image
+            document.getElementById('main-before').src = beforeSrc;
+            
+            // Update main after video
+            const mainVideo = document.getElementById('main-after');
+            mainVideo.src = afterSrc;
+            mainVideo.load();
+            mainVideo.play();
+            
+            // Update active state
+            document.querySelectorAll('.work-thumb').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+    </script>
 
     <section class="how">
         <div class="container">
