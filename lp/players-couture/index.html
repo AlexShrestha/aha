@@ -235,27 +235,26 @@
 
         .storyboard-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 28px;
+            font-size: 24px;
             letter-spacing: 0.05em;
-            margin-bottom: 30px;
-            color: var(--black);
+            margin-bottom: 20px;
+            color: var(--gray);
         }
 
         .product-section.dark .storyboard-title {
-            color: var(--white);
+            color: rgba(255,255,255,0.6);
         }
 
         .storyboard-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 12px;
-            margin-bottom: 60px;
+            gap: 8px;
         }
 
         .storyboard-item {
             position: relative;
             aspect-ratio: 3/4;
-            border-radius: 6px;
+            border-radius: 4px;
             overflow: hidden;
             cursor: pointer;
         }
@@ -271,16 +270,37 @@
             transform: scale(1.1);
         }
 
+        .video-section {
+            padding: 80px 60px;
+            background: var(--maroon);
+        }
+
+        .video-section.dark {
+            background: #1a3a5c;
+        }
+
+        .video-section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 36px;
+            letter-spacing: 0.05em;
+            color: var(--white);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
         .videos-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .video-item {
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
             background: var(--black);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
 
         .video-item video {
@@ -849,12 +869,16 @@
 
             .storyboard-grid {
                 grid-template-columns: repeat(4, 1fr);
-                gap: 8px;
+                gap: 6px;
             }
 
             .videos-grid {
                 grid-template-columns: 1fr;
-                gap: 15px;
+                gap: 20px;
+            }
+
+            .video-section {
+                padding: 60px 30px;
             }
 
             .product-section {
@@ -1030,7 +1054,10 @@
                 <img src="Cantona Players Cout_375_story_C_shot_4.png" alt="Story C Shot 4">
             </div>
         </div>
-        
+    </section>
+    
+    <section class="video-section">
+        <h3 class="video-section-title">AI Generated Video</h3>
         <div class="videos-grid">
             <div class="video-item">
                 <video autoplay muted loop playsinline>
@@ -1120,7 +1147,10 @@
                 <img src="Robin van Persie Men_370_story_C_shot_4.png" alt="370 Story C Shot 4">
             </div>
         </div>
-        
+    </section>
+    
+    <section class="video-section dark">
+        <h3 class="video-section-title">AI Generated Video</h3>
         <div class="videos-grid">
             <div class="video-item">
                 <video autoplay muted loop playsinline>
