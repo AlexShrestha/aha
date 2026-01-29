@@ -233,6 +233,61 @@
             color: var(--white);
         }
 
+        .storyboard-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            letter-spacing: 0.05em;
+            margin-bottom: 30px;
+            color: var(--black);
+        }
+
+        .product-section.dark .storyboard-title {
+            color: var(--white);
+        }
+
+        .storyboard-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+            margin-bottom: 60px;
+        }
+
+        .storyboard-item {
+            position: relative;
+            aspect-ratio: 3/4;
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .storyboard-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .storyboard-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .video-item {
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--black);
+        }
+
+        .video-item video {
+            width: 100%;
+            display: block;
+        }
+
         .variants-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -792,6 +847,16 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
+            .storyboard-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+            }
+
+            .videos-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
             .product-section {
                 padding: 80px 30px;
             }
@@ -925,46 +990,63 @@
             <div class="original-label">Original Product Photo</div>
         </div>
         
-        <p class="section-intro">The client reviews generated options and selects favorites. Each selection trains the AI on their preferences. <strong>This is the reinforcement learning loop.</strong></p>
+        <h3 class="storyboard-title">Aharoll AI Storyboard</h3>
         
-        <div class="variants-grid">
-            <div class="variant-item selected" onclick="openLightbox(this)">
-                <img src="cantona-lifestyle-1.png" alt="Pub scene">
-                <div class="selection-badge">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                        <path d="M5 13l4 4L19 7"/>
-                    </svg>
-                    Selected
-                </div>
+        <div class="storyboard-grid">
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Cantona Players Cout_375_story_A_shot_1.png" alt="Story A Shot 1">
             </div>
-            <div class="variant-item selected" onclick="openLightbox(this)">
-                <img src="cantona-lifestyle-2.png" alt="Lifestyle shot">
-                <div class="selection-badge">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                        <path d="M5 13l4 4L19 7"/>
-                    </svg>
-                    Selected
-                </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Cantona Players Cout_375_story_A_shot_2.png" alt="Story A Shot 2">
             </div>
-            <div class="variant-item" onclick="openLightbox(this)">
-                <img src="cantona-lifestyle-3.png" alt="Bedroom scene">
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Cantona Players Cout_375_story_A_shot_3.png" alt="Story A Shot 3">
             </div>
-            <div class="variant-item selected" onclick="openLightbox(this)">
-                <img src="cantona-lifestyle-4.png" alt="Cinematic shot">
-                <div class="selection-badge">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                        <path d="M5 13l4 4L19 7"/>
-                    </svg>
-                    Selected
-                </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Cantona Players Cout_375_story_A_shot_4.png" alt="Story A Shot 4">
+            </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Cantona Players Cout_375_story_B_shot_1.png" alt="Story B Shot 1">
+            </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Cantona Players Cout_375_story_B_shot_2.png" alt="Story B Shot 2">
+            </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Cantona Players Cout_375_story_B_shot_3.png" alt="Story B Shot 3">
+            </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Cantona Players Cout_375_story_B_shot_4.png" alt="Story B Shot 4">
+            </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Cantona Players Cout_375_story_C_shot_1.png" alt="Story C Shot 1">
+            </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Cantona Players Cout_375_story_C_shot_2.png" alt="Story C Shot 2">
+            </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Cantona Players Cout_375_story_C_shot_3.png" alt="Story C Shot 3">
+            </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Cantona Players Cout_375_story_C_shot_4.png" alt="Story C Shot 4">
             </div>
         </div>
         
-        <div class="product-video">
-            <video autoplay muted loop playsinline>
-                <source src="FINAL_cantona_hoodie_red.mp4" type="video/mp4">
-            </video>
-            <div class="video-badge">AI Generated Video</div>
+        <div class="videos-grid">
+            <div class="video-item">
+                <video autoplay muted loop playsinline>
+                    <source src="cantona_short_hd_1.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-item">
+                <video autoplay muted loop playsinline>
+                    <source src="cantona_short_hd_2.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-item">
+                <video autoplay muted loop playsinline>
+                    <source src="cantona_short_hd_3.mp4" type="video/mp4">
+                </video>
+            </div>
         </div>
     </section>
 
@@ -980,40 +1062,81 @@
             <div class="original-label">Original Product Photo</div>
         </div>
         
-        <p class="section-intro">Same workflow, different product. The AI applies learned preferences while adapting to the new colorway.</p>
+        <h3 class="storyboard-title">Aharoll AI Storyboard</h3>
         
-        <div class="variants-grid">
-            <div class="variant-item selected" onclick="openLightbox(this)">
-                <img src="Robin van Persie Men_369_story_A_shot_1.png" alt="Stadium scene">
-                <div class="selection-badge">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                        <path d="M5 13l4 4L19 7"/>
-                    </svg>
-                    Selected
-                </div>
+        <div class="storyboard-grid">
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Robin van Persie Men_369_story_A_shot_1.png" alt="369 Story A Shot 1">
             </div>
-            <div class="variant-item selected" onclick="openLightbox(this)">
-                <img src="Robin van Persie Men_369_story_A_shot_2.png" alt="Stadium stands">
-                <div class="selection-badge">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                        <path d="M5 13l4 4L19 7"/>
-                    </svg>
-                    Selected
-                </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Robin van Persie Men_369_story_A_shot_2.png" alt="369 Story A Shot 2">
             </div>
-            <div class="variant-item" onclick="openLightbox(this)">
-                <img src="Robin van Persie Men_370_story_A_shot_4.png" alt="Lifestyle shot">
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Robin van Persie Men_369_story_A_shot_3.png" alt="369 Story A Shot 3">
             </div>
-            <div class="variant-item" onclick="openLightbox(this)">
-                <img src="Robin van Persie Men_370_story_B_shot_4.png" alt="Action shot">
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Robin van Persie Men_369_story_A_shot_4.png" alt="369 Story A Shot 4">
+            </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Robin van Persie Men_369_story_B_shot_1.png" alt="369 Story B Shot 1">
+            </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Robin van Persie Men_369_story_B_shot_2.png" alt="369 Story B Shot 2">
+            </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Robin van Persie Men_370_story_A_shot_1.png" alt="370 Story A Shot 1">
+            </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Robin van Persie Men_370_story_A_shot_2.png" alt="370 Story A Shot 2">
+            </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Robin van Persie Men_370_story_A_shot_3.png" alt="370 Story A Shot 3">
+            </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Robin van Persie Men_370_story_A_shot_4.png" alt="370 Story A Shot 4">
+            </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Robin van Persie Men_370_story_B_shot_1.png" alt="370 Story B Shot 1">
+            </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Robin van Persie Men_370_story_B_shot_2.png" alt="370 Story B Shot 2">
+            </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Robin van Persie Men_370_story_B_shot_3.png" alt="370 Story B Shot 3">
+            </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Robin van Persie Men_370_story_B_shot_4.png" alt="370 Story B Shot 4">
+            </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Robin van Persie Men_370_story_C_shot_1.png" alt="370 Story C Shot 1">
+            </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Robin van Persie Men_370_story_C_shot_2.png" alt="370 Story C Shot 2">
+            </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Robin van Persie Men_370_story_C_shot_3.png" alt="370 Story C Shot 3">
+            </div>
+            <div class="storyboard-item" onclick="openLightbox(this)">
+                <img src="Robin van Persie Men_370_story_C_shot_4.png" alt="370 Story C Shot 4">
             </div>
         </div>
         
-        <div class="product-video">
-            <video autoplay muted loop playsinline>
-                <source src="FINAL_vanPersie_hoodie.mp4" type="video/mp4">
-            </video>
-            <div class="video-badge">AI Generated Video</div>
+        <div class="videos-grid">
+            <div class="video-item">
+                <video autoplay muted loop playsinline>
+                    <source src="vanpersie_short_1.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-item">
+                <video autoplay muted loop playsinline>
+                    <source src="vanpersie_short_2.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-item">
+                <video autoplay muted loop playsinline>
+                    <source src="vanpersie_short_3.mp4" type="video/mp4">
+                </video>
+            </div>
         </div>
     </section>
 
