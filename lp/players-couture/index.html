@@ -247,14 +247,15 @@
 
         .storyboard-grid {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 8px;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 6px;
+            max-width: 1000px;
         }
 
         .storyboard-item {
             position: relative;
             aspect-ratio: 3/4;
-            border-radius: 4px;
+            border-radius: 3px;
             overflow: hidden;
             cursor: pointer;
         }
@@ -270,37 +271,37 @@
             transform: scale(1.1);
         }
 
-        .video-section {
-            padding: 80px 60px;
-            background: var(--maroon);
+        section.video-section {
+            padding: 100px 60px !important;
+            background: var(--maroon) !important;
         }
 
-        .video-section.dark {
-            background: #1a3a5c;
+        section.video-section.dark {
+            background: #1a3a5c !important;
         }
 
         .video-section-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 36px;
+            font-size: 48px;
             letter-spacing: 0.05em;
             color: var(--white);
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .videos-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            max-width: 1400px;
+            gap: 40px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .video-item {
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
             background: var(--black);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
         }
 
         .video-item video {
@@ -607,47 +608,6 @@
             border-radius: 4px;
         }
 
-        /* Video Section */
-        .video-section {
-            padding: 120px 60px;
-            background: var(--cream);
-        }
-
-        .video-intro {
-            color: var(--gray);
-            font-size: 17px;
-            max-width: 600px;
-            margin-bottom: 50px;
-            line-height: 1.7;
-        }
-
-        .video-container {
-            position: relative;
-            max-width: 800px;
-            border-radius: 8px;
-            overflow: hidden;
-            background: var(--black);
-        }
-
-        .video-container video {
-            width: 100%;
-            display: block;
-        }
-
-        .video-badge {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: var(--maroon);
-            color: white;
-            padding: 8px 16px;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            border-radius: 4px;
-        }
-
         /* How It Works */
         .how-it-works {
             padding: 120px 60px;
@@ -869,16 +829,20 @@
 
             .storyboard-grid {
                 grid-template-columns: repeat(4, 1fr);
-                gap: 6px;
+                gap: 4px;
             }
 
             .videos-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 25px;
             }
 
-            .video-section {
-                padding: 60px 30px;
+            section.video-section {
+                padding: 60px 30px !important;
+            }
+
+            .video-section-title {
+                font-size: 36px;
             }
 
             .product-section {
