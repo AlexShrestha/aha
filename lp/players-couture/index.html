@@ -167,8 +167,9 @@
         }
 
         /* Product Sections */
+        /* Product Section - Editorial Centered Design */
         .product-section {
-            padding: 120px 60px;
+            padding: 100px 60px;
             background: var(--white);
         }
 
@@ -176,86 +177,112 @@
             background: var(--black);
         }
 
-        .product-section.dark .section-title {
-            color: var(--white);
+        .product-header {
+            text-align: center;
+            margin-bottom: 80px;
         }
 
-        .product-section.dark .section-number {
-            color: rgba(255,255,255,0.1);
-        }
-
-        .product-section.dark .section-intro {
-            color: rgba(255,255,255,0.7);
-        }
-
-        .product-section.dark .original-label {
-            background: var(--white);
+        .product-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 72px;
+            letter-spacing: 0.02em;
+            margin-bottom: 10px;
             color: var(--black);
         }
 
-        .original-product {
-            position: relative;
-            max-width: 500px;
-            margin-bottom: 60px;
+        .product-section.dark .product-name {
+            color: var(--white);
         }
 
-        .original-product img {
+        .product-subtitle {
+            font-size: 14px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+
+        .product-section.dark .product-subtitle {
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Workflow Steps */
+        .workflow-step {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .workflow-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-indicator {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 14px;
+            letter-spacing: 0.3em;
+            color: var(--maroon);
+            margin-bottom: 15px;
+        }
+
+        .product-section.dark .step-indicator {
+            color: #7dd3fc;
+        }
+
+        .step-indicator.light {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .step-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 32px;
+            letter-spacing: 0.05em;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+
+        .product-section.dark .step-title {
+            color: var(--white);
+        }
+
+        .step-title.light {
+            color: var(--white);
+        }
+
+        .step-description {
+            font-size: 16px;
+            color: var(--gray);
+            max-width: 500px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .product-section.dark .step-description {
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Original Product - Centered */
+        .original-product.centered {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .original-product.centered img {
             width: 100%;
             border-radius: 8px;
         }
 
-        .original-label {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background: var(--black);
-            color: var(--white);
-            padding: 8px 16px;
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        .section-intro {
-            color: var(--gray);
-            font-size: 17px;
-            max-width: 600px;
-            margin-bottom: 40px;
-            line-height: 1.7;
-        }
-
-        .section-intro strong {
-            color: var(--black);
-        }
-
-        .product-section.dark .section-intro strong {
-            color: var(--white);
-        }
-
-        .storyboard-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 24px;
-            letter-spacing: 0.05em;
-            margin-bottom: 20px;
-            color: var(--gray);
-        }
-
-        .product-section.dark .storyboard-title {
-            color: rgba(255,255,255,0.6);
-        }
-
+        /* Storyboard Grid - Centered */
         .storyboard-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 8px;
-            max-width: 700px;
+            gap: 10px;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .storyboard-item {
             position: relative;
             aspect-ratio: 3/4;
-            border-radius: 3px;
+            border-radius: 4px;
             overflow: hidden;
             cursor: pointer;
         }
@@ -271,37 +298,30 @@
             transform: scale(1.1);
         }
 
-        section.video-section {
-            padding: 120px 60px !important;
-            background: var(--maroon) !important;
+        /* Video Step - Full Width Background */
+        .video-step {
+            background: var(--maroon);
+            margin: 100px -60px 0;
+            padding: 100px 60px;
         }
 
-        section.video-section.dark {
-            background: #1a3a5c !important;
-        }
-
-        .video-section-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 56px;
-            letter-spacing: 0.05em;
-            color: var(--white);
-            text-align: center;
-            margin-bottom: 60px;
+        .video-step.dark-video {
+            background: #1a3a5c;
         }
 
         .videos-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 50px;
-            max-width: 1400px;
+            gap: 40px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .video-item {
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
             background: var(--black);
-            box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
         }
 
         .video-item video {
@@ -829,20 +849,21 @@
 
             .storyboard-grid {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 6px;
+                gap: 8px;
             }
 
             .videos-grid {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                gap: 25px;
             }
 
-            section.video-section {
-                padding: 80px 30px !important;
+            .video-step {
+                margin: 80px -30px 0;
+                padding: 80px 30px;
             }
 
-            .video-section-title {
-                font-size: 42px;
+            .product-name {
+                font-size: 48px;
             }
 
             .product-section {
@@ -948,16 +969,16 @@
             </p>
             <div class="hero-stats">
                 <div class="stat">
-                    <div class="stat-value">1</div>
+                    <div class="stat-value">01</div>
                     <div class="stat-label">Product Photo</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-value">4</div>
-                    <div class="stat-label">Lifestyle Shots</div>
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">AI Storyboards</div>
                 </div>
                 <div class="stat">
                     <div class="stat-value">∞</div>
-                    <div class="stat-label">Scenarios</div>
+                    <div class="stat-label">Video Styles</div>
                 </div>
             </div>
         </div>
@@ -968,150 +989,164 @@
 
     <!-- Product 1 - Cantona -->
     <section class="product-section">
-        <div class="section-header">
-            <h2 class="section-title">Cantona Hoodie</h2>
-            <div class="section-number">01</div>
+        <div class="product-header">
+            <h2 class="product-name">Cantona Hoodie</h2>
+            <p class="product-subtitle">Players Couture Collection</p>
         </div>
         
-        <div class="original-product">
-            <img src="cantona-original.png" alt="Cantona Hoodie - Original product photo">
-            <div class="original-label">Original Product Photo</div>
-        </div>
-        
-        <h3 class="storyboard-title">Aharoll AI Storyboard</h3>
-        
-        <div class="storyboard-grid">
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Cantona Players Cout_375_story_A_shot_1.png" alt="Story A Shot 1">
-            </div>
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Cantona Players Cout_375_story_A_shot_2.png" alt="Story A Shot 2">
-            </div>
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Cantona Players Cout_375_story_A_shot_3.png" alt="Story A Shot 3">
-            </div>
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Cantona Players Cout_375_story_A_shot_4.png" alt="Story A Shot 4">
-            </div>
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Cantona Players Cout_375_story_B_shot_1.png" alt="Story B Shot 1">
-            </div>
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Cantona Players Cout_375_story_B_shot_2.png" alt="Story B Shot 2">
-            </div>
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Cantona Players Cout_375_story_B_shot_3.png" alt="Story B Shot 3">
-            </div>
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Cantona Players Cout_375_story_B_shot_4.png" alt="Story B Shot 4">
-            </div>
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Cantona Players Cout_375_story_C_shot_1.png" alt="Story C Shot 1">
-            </div>
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Cantona Players Cout_375_story_C_shot_2.png" alt="Story C Shot 2">
-            </div>
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Cantona Players Cout_375_story_C_shot_3.png" alt="Story C Shot 3">
-            </div>
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Cantona Players Cout_375_story_C_shot_4.png" alt="Story C Shot 4">
+        <div class="workflow-step">
+            <div class="step-indicator">01</div>
+            <h3 class="step-title">Original Product Photo</h3>
+            <div class="original-product centered">
+                <img src="cantona-original.png" alt="Cantona Hoodie - Original product photo">
             </div>
         </div>
-    </section>
-    
-    <section class="video-section">
-        <h3 class="video-section-title">AI Generated Video</h3>
-        <div class="videos-grid">
-            <div class="video-item">
-                <video autoplay muted loop playsinline>
-                    <source src="cantona_short_hd_1.mp4" type="video/mp4">
-                </video>
+        
+        <div class="workflow-step">
+            <div class="step-indicator">02</div>
+            <h3 class="step-title">Aharoll AI Storyboard</h3>
+            <p class="step-description">Each selection trains the AI on your preferences. The more you choose, the better it understands your brand aesthetic.</p>
+            <div class="storyboard-grid">
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Cantona Players Cout_375_story_A_shot_1.png" alt="Story A Shot 1">
+                </div>
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Cantona Players Cout_375_story_A_shot_2.png" alt="Story A Shot 2">
+                </div>
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Cantona Players Cout_375_story_A_shot_3.png" alt="Story A Shot 3">
+                </div>
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Cantona Players Cout_375_story_A_shot_4.png" alt="Story A Shot 4">
+                </div>
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Cantona Players Cout_375_story_B_shot_1.png" alt="Story B Shot 1">
+                </div>
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Cantona Players Cout_375_story_B_shot_2.png" alt="Story B Shot 2">
+                </div>
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Cantona Players Cout_375_story_B_shot_3.png" alt="Story B Shot 3">
+                </div>
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Cantona Players Cout_375_story_B_shot_4.png" alt="Story B Shot 4">
+                </div>
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Cantona Players Cout_375_story_C_shot_1.png" alt="Story C Shot 1">
+                </div>
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Cantona Players Cout_375_story_C_shot_2.png" alt="Story C Shot 2">
+                </div>
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Cantona Players Cout_375_story_C_shot_3.png" alt="Story C Shot 3">
+                </div>
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Cantona Players Cout_375_story_C_shot_4.png" alt="Story C Shot 4">
+                </div>
             </div>
-            <div class="video-item">
-                <video autoplay muted loop playsinline>
-                    <source src="cantona_short_hd_2.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="video-item">
-                <video autoplay muted loop playsinline>
-                    <source src="cantona_short_hd_3.mp4" type="video/mp4">
-                </video>
+        </div>
+        
+        <div class="workflow-step video-step">
+            <div class="step-indicator light">03</div>
+            <h3 class="step-title light">AI Generated Video</h3>
+            <div class="videos-grid">
+                <div class="video-item">
+                    <video autoplay muted loop playsinline>
+                        <source src="cantona_short_hd_1.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-item">
+                    <video autoplay muted loop playsinline>
+                        <source src="cantona_short_hd_2.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-item">
+                    <video autoplay muted loop playsinline>
+                        <source src="cantona_short_hd_3.mp4" type="video/mp4">
+                    </video>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Product 2 - Van Persie -->
     <section class="product-section dark">
-        <div class="section-header">
-            <h2 class="section-title">Van Persie Hoodie</h2>
-            <div class="section-number">02</div>
+        <div class="product-header">
+            <h2 class="product-name">Van Persie Hoodie</h2>
+            <p class="product-subtitle">Players Couture Collection</p>
         </div>
         
-        <div class="original-product">
-            <img src="vanpersie-original.png" alt="Van Persie Hoodie - Original product photo">
-            <div class="original-label">Original Product Photo</div>
-        </div>
-        
-        <h3 class="storyboard-title">Aharoll AI Storyboard</h3>
-        
-        <div class="storyboard-grid">
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Robin van Persie Men_369_story_A_shot_1.png" alt="369 Story A Shot 1">
-            </div>
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Robin van Persie Men_369_story_A_shot_2.png" alt="369 Story A Shot 2">
-            </div>
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Robin van Persie Men_369_story_A_shot_3.png" alt="369 Story A Shot 3">
-            </div>
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Robin van Persie Men_369_story_A_shot_4.png" alt="369 Story A Shot 4">
-            </div>
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Robin van Persie Men_369_story_B_shot_1.png" alt="369 Story B Shot 1">
-            </div>
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Robin van Persie Men_369_story_B_shot_2.png" alt="369 Story B Shot 2">
-            </div>
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Robin van Persie Men_370_story_A_shot_1.png" alt="370 Story A Shot 1">
-            </div>
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Robin van Persie Men_370_story_A_shot_2.png" alt="370 Story A Shot 2">
-            </div>
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Robin van Persie Men_370_story_A_shot_3.png" alt="370 Story A Shot 3">
-            </div>
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Robin van Persie Men_370_story_A_shot_4.png" alt="370 Story A Shot 4">
-            </div>
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Robin van Persie Men_370_story_B_shot_1.png" alt="370 Story B Shot 1">
-            </div>
-            <div class="storyboard-item" onclick="openLightbox(this)">
-                <img src="Robin van Persie Men_370_story_B_shot_2.png" alt="370 Story B Shot 2">
+        <div class="workflow-step">
+            <div class="step-indicator">01</div>
+            <h3 class="step-title">Original Product Photo</h3>
+            <div class="original-product centered">
+                <img src="vanpersie-original.png" alt="Van Persie Hoodie - Original product photo">
             </div>
         </div>
-    </section>
-    
-    <section class="video-section dark">
-        <h3 class="video-section-title">AI Generated Video</h3>
-        <div class="videos-grid">
-            <div class="video-item">
-                <video autoplay muted loop playsinline>
-                    <source src="vanpersie_short_1.mp4" type="video/mp4">
-                </video>
+        
+        <div class="workflow-step">
+            <div class="step-indicator">02</div>
+            <h3 class="step-title">Aharoll AI Storyboard</h3>
+            <p class="step-description">Same workflow, different product. The AI applies learned preferences while adapting to the new colorway.</p>
+            <div class="storyboard-grid">
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Robin van Persie Men_369_story_A_shot_1.png" alt="369 Story A Shot 1">
+                </div>
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Robin van Persie Men_369_story_A_shot_2.png" alt="369 Story A Shot 2">
+                </div>
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Robin van Persie Men_369_story_A_shot_3.png" alt="369 Story A Shot 3">
+                </div>
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Robin van Persie Men_369_story_A_shot_4.png" alt="369 Story A Shot 4">
+                </div>
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Robin van Persie Men_369_story_B_shot_1.png" alt="369 Story B Shot 1">
+                </div>
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Robin van Persie Men_369_story_B_shot_2.png" alt="369 Story B Shot 2">
+                </div>
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Robin van Persie Men_370_story_A_shot_1.png" alt="370 Story A Shot 1">
+                </div>
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Robin van Persie Men_370_story_A_shot_2.png" alt="370 Story A Shot 2">
+                </div>
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Robin van Persie Men_370_story_A_shot_3.png" alt="370 Story A Shot 3">
+                </div>
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Robin van Persie Men_370_story_A_shot_4.png" alt="370 Story A Shot 4">
+                </div>
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Robin van Persie Men_370_story_B_shot_1.png" alt="370 Story B Shot 1">
+                </div>
+                <div class="storyboard-item" onclick="openLightbox(this)">
+                    <img src="Robin van Persie Men_370_story_B_shot_2.png" alt="370 Story B Shot 2">
+                </div>
             </div>
-            <div class="video-item">
-                <video autoplay muted loop playsinline>
-                    <source src="vanpersie_short_2.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="video-item">
-                <video autoplay muted loop playsinline>
-                    <source src="vanpersie_short_3.mp4" type="video/mp4">
-                </video>
+        </div>
+        
+        <div class="workflow-step video-step dark-video">
+            <div class="step-indicator light">03</div>
+            <h3 class="step-title light">AI Generated Video</h3>
+            <div class="videos-grid">
+                <div class="video-item">
+                    <video autoplay muted loop playsinline>
+                        <source src="vanpersie_short_1.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-item">
+                    <video autoplay muted loop playsinline>
+                        <source src="vanpersie_short_2.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-item">
+                    <video autoplay muted loop playsinline>
+                        <source src="vanpersie_short_3.mp4" type="video/mp4">
+                    </video>
+                </div>
             </div>
         </div>
     </section>
