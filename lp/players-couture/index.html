@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Players Couture × Aharoll | AI Product Photography Case Study</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --white: #fafafa;
+            --cream: #f5f2eb;
+            --maroon: #8B2332;
+            --maroon-dark: #6a1a27;
+            --gray: #666;
+            --gray-light: #e5e5e5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            line-height: 0.95;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+            background: var(--black);
+        }
+
+        .hero-left {
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--maroon);
+            color: var(--white);
+            padding: 8px 16px;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            width: fit-content;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--white);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero-title {
+            font-size: clamp(48px, 8vw, 100px);
+            color: var(--white);
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .hero-title span {
+            display: block;
+            color: var(--maroon);
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: rgba(255,255,255,0.7);
+            max-width: 400px;
+            margin-bottom: 50px;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+
+        .stat {
+            border-left: 2px solid var(--maroon);
+            padding-left: 20px;
+        }
+
+        .stat-value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 42px;
+            color: var(--white);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-right {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            position: absolute;
+            inset: 0;
+            background: url('cantona-lifestyle-1.png') center/cover no-repeat;
+            animation: zoomIn 1.5s ease-out both;
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, var(--black) 0%, transparent 30%);
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(1.1); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Process Section */
+        .process {
+            padding: 120px 60px;
+            background: var(--white);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 80px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .section-title {
+            font-size: clamp(36px, 5vw, 64px);
+        }
+
+        .section-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 120px;
+            color: var(--gray-light);
+            line-height: 0.8;
+        }
+
+        /* Transformation Grid */
+        .transformation {
+            display: grid;
+            grid-template-columns: 1fr 80px 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+
+        .transform-card {
+            position: relative;
+            background: var(--cream);
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 1;
+        }
+
+        .transform-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .transform-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .transform-label {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: var(--black);
+            color: var(--white);
+            padding: 8px 16px;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .transform-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .arrow-line {
+            width: 2px;
+            height: 60px;
+            background: linear-gradient(to bottom, transparent, var(--maroon), transparent);
+        }
+
+        .arrow-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--maroon);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 20px;
+            animation: bounceRight 1.5s ease-in-out infinite;
+        }
+
+        @keyframes bounceRight {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(5px); }
+        }
+
+        .process .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .process .gallery-item {
+            position: relative;
+            aspect-ratio: 3/4;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .process .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .process .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .process .gallery-item.selected {
+            outline: 3px solid #22c55e;
+            outline-offset: -3px;
+        }
+
+        .process .video-container {
+            position: relative;
+            max-width: 800px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--black);
+        }
+
+        .process .video-container video {
+            width: 100%;
+            display: block;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 120px 60px;
+            background: var(--black);
+        }
+
+        .gallery .section-title {
+            color: var(--white);
+        }
+
+        .gallery .section-number {
+            color: rgba(255,255,255,0.1);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 3/4;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            color: var(--white);
+            font-size: 13px;
+            z-index: 2;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .gallery-intro {
+            color: rgba(255,255,255,0.8);
+            font-size: 17px;
+            max-width: 700px;
+            margin-bottom: 50px;
+            line-height: 1.7;
+        }
+
+        .gallery-intro strong {
+            color: var(--white);
+        }
+
+        .gallery-note {
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+            margin-top: 40px;
+            font-style: italic;
+        }
+
+        /* Selection Badge */
+        .gallery-item.selected {
+            outline: 3px solid #22c55e;
+            outline-offset: -3px;
+        }
+
+        .selection-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #22c55e;
+            color: white;
+            padding: 6px 12px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 3;
+            border-radius: 4px;
+        }
+
+        /* Video Section */
+        .video-section {
+            padding: 120px 60px;
+            background: var(--cream);
+        }
+
+        .video-intro {
+            color: var(--gray);
+            font-size: 17px;
+            max-width: 600px;
+            margin-bottom: 50px;
+            line-height: 1.7;
+        }
+
+        .video-container {
+            position: relative;
+            max-width: 800px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--black);
+        }
+
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+
+        .video-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--maroon);
+            color: white;
+            padding: 8px 16px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 4px;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 120px 60px;
+            background: var(--cream);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            margin-top: 80px;
+        }
+
+        .step {
+            position: relative;
+        }
+
+        .step-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 140px;
+            color: var(--gray-light);
+            line-height: 0.8;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .step:hover .step-number {
+            color: var(--maroon);
+        }
+
+        .step-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .step-desc {
+            color: var(--gray);
+            font-size: 15px;
+        }
+
+        /* Value Props Section */
+        .value-props {
+            padding: 100px 60px;
+            background: var(--white);
+        }
+
+        .props-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+        }
+
+        .prop {
+            padding: 40px;
+            background: var(--cream);
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .prop:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .prop-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--maroon);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: var(--white);
+        }
+
+        .prop-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .prop-desc {
+            color: var(--gray);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 150px 60px;
+            background: var(--maroon);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            display: none;
+        }
+
+        .cta-title {
+            font-size: clamp(40px, 6vw, 80px);
+            color: var(--white);
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-subtitle {
+            color: rgba(255,255,255,0.8);
+            font-size: 18px;
+            margin-bottom: 50px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--white);
+            color: var(--maroon);
+            padding: 18px 40px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button:hover {
+            background: var(--black);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .cta-button svg {
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover svg {
+            transform: translateX(5px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 60px;
+            background: var(--black);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 13px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-client {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 24px;
+            color: var(--white);
+        }
+
+        .footer-divider {
+            color: rgba(255,255,255,0.3);
+        }
+
+        .footer-powered {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .hero-left {
+                padding: 40px 30px 60px;
+                order: 2;
+            }
+
+            .hero-right {
+                height: 50vh;
+                order: 1;
+            }
+
+            .hero-image::after {
+                background: linear-gradient(to top, var(--black) 0%, transparent 30%);
+            }
+
+            .transformation {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .transform-arrow {
+                transform: rotate(90deg);
+                height: 80px;
+            }
+
+            .gallery-grid, .process .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .process, .gallery, .how-it-works, .cta, .value-props, .video-section {
+                padding: 80px 30px;
+            }
+
+            .props-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-stats {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox.active img {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--white);
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-left">
+            <div class="badge">Case Study</div>
+            <h1 class="hero-title">
+                Players Couture
+                <span>Case Study</span>
+            </h1>
+            <p class="hero-subtitle">
+                AI that learns your brand's taste. Generate lifestyle content, give feedback, watch it get smarter. Scale across your entire catalog with perfect consistency.
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-value">1</div>
+                    <div class="stat-label">Product Photo</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">Lifestyle Shots</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">∞</div>
+                    <div class="stat-label">Scenarios</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="hero-image"></div>
+        </div>
+    </section>
+
+    <!-- Process Section - Cantona -->
+    <section class="process">
+        <div class="section-header">
+            <h2 class="section-title">Cantona Hoodie</h2>
+            <div class="section-number">01</div>
+        </div>
+        
+        <div class="transformation">
+            <div class="transform-card">
+                <img src="cantona-original.png" alt="Original product photo">
+                <div class="transform-label">Original</div>
+            </div>
+            <div class="transform-arrow">
+                <div class="arrow-line"></div>
+                <div class="arrow-icon">→</div>
+                <div class="arrow-line"></div>
+            </div>
+            <div class="transform-card">
+                <img src="cantona-lifestyle-1.png" alt="AI-generated lifestyle photo">
+                <div class="transform-label">AI Generated</div>
+            </div>
+        </div>
+        
+        <p class="gallery-intro" style="margin-top: 60px; color: var(--gray);">The client reviews generated options and selects favorites. Each selection trains the AI on their preferences. <strong style="color: var(--black);">This is the reinforcement learning loop.</strong></p>
+        
+        <div class="gallery-grid" style="margin-top: 40px;">
+            <div class="gallery-item selected" onclick="openLightbox(this)">
+                <img src="cantona-lifestyle-1.png" alt="Pub scene">
+                <div class="selection-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <path d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Selected
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="cantona-lifestyle-2.png" alt="Lifestyle shot">
+            </div>
+            <div class="gallery-item selected" onclick="openLightbox(this)">
+                <img src="cantona-lifestyle-3.png" alt="Bedroom scene">
+                <div class="selection-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <path d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Selected
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="cantona-lifestyle-4.png" alt="Cinematic shot">
+            </div>
+        </div>
+        
+        <div class="video-container" style="margin-top: 60px;">
+            <video autoplay muted loop playsinline>
+                <source src="FINAL_cantona_hoodie_red.mp4" type="video/mp4">
+            </video>
+            <div class="video-badge">AI Generated Video</div>
+        </div>
+    </section>
+
+    <!-- Process Section - Van Persie -->
+    <section class="process" style="background: var(--black);">
+        <div class="section-header">
+            <h2 class="section-title" style="color: var(--white);">Van Persie Hoodie</h2>
+            <div class="section-number" style="color: rgba(255,255,255,0.1);">02</div>
+        </div>
+        
+        <p class="gallery-intro" style="color: rgba(255,255,255,0.7);">Same workflow, different product. The AI applies learned preferences while adapting to the new colorway and branding.</p>
+        
+        <div class="gallery-grid" style="margin-top: 40px;">
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="Robin van Persie Men_369_story_A_shot_1.png" alt="Stadium scene">
+            </div>
+            <div class="gallery-item selected" onclick="openLightbox(this)">
+                <img src="Robin van Persie Men_369_story_A_shot_2.png" alt="Stadium stands">
+                <div class="selection-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <path d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Selected
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="Robin van Persie Men_370_story_A_shot_4.png" alt="Lifestyle shot">
+            </div>
+            <div class="gallery-item selected" onclick="openLightbox(this)">
+                <img src="Robin van Persie Men_370_story_B_shot_4.png" alt="Action shot">
+                <div class="selection-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <path d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Selected
+                </div>
+            </div>
+        </div>
+        
+        <div class="video-container" style="margin-top: 60px;">
+            <video autoplay muted loop playsinline>
+                <source src="FINAL_vanPersie_hoodie.mp4" type="video/mp4">
+            </video>
+            <div class="video-badge">AI Generated Video</div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="section-header">
+            <h2 class="section-title">How It Works</h2>
+            <div class="section-number">03</div>
+        </div>
+        
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">01</div>
+                <h3 class="step-title">Upload & Generate</h3>
+                <p class="step-desc">Send your product photo. Our AI generates multiple lifestyle scenes — different settings, moods, and contexts.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">02</div>
+                <h3 class="step-title">Rate & Refine</h3>
+                <p class="step-desc">Tell us what you like. Our system learns your taste with every selection — colors, scenes, model types, energy. The more feedback, the better it gets.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">03</div>
+                <h3 class="step-title">Scale Your Catalog</h3>
+                <p class="step-desc">Apply your trained style across your entire product line. Consistent branding, accurate text rendering, cohesive look — at any scale.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Props -->
+    <section class="value-props">
+        <div class="props-grid">
+            <div class="prop">
+                <div class="prop-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/>
+                    </svg>
+                </div>
+                <h3 class="prop-title">AI That Learns You</h3>
+                <p class="prop-desc">Reinforcement learning from your feedback. Every rating trains the model on your brand's aesthetic. It gets smarter with each interaction.</p>
+            </div>
+            <div class="prop">
+                <div class="prop-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+                    </svg>
+                </div>
+                <h3 class="prop-title">Catalog-Scale Consistency</h3>
+                <p class="prop-desc">Same style across 10 or 10,000 products. Text stays readable. Branding stays intact. No weird artifacts or inconsistencies.</p>
+            </div>
+            <div class="prop">
+                <div class="prop-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h3 class="prop-title">Pay Only for Results</h3>
+                <p class="prop-desc">No upfront fees for generations you don't use. You only pay for the images you approve. Happy results, happy wallet.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2 class="cta-title">Your Style. Your Scale.<br>Only Pay for What You Love.</h2>
+        <p class="cta-subtitle">Start with one product. Train your AI. Scale across your entire catalog with perfect consistency.</p>
+        <a href="https://cal.com/aharoll/30min" class="cta-button">
+            Get Started
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-brand">
+            <span class="footer-client">Players Couture</span>
+            <span class="footer-divider">×</span>
+            <span class="footer-powered">Powered by Aharoll</span>
+        </div>
+        <div>© 2026 Case Study</div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close">×</button>
+        <img src="" alt="Full size image" id="lightbox-img">
+    </div>
+
+    <script>
+        function openLightbox(el) {
+            const img = el.querySelector('img');
+            document.getElementById('lightbox-img').src = img.src;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.step, .gallery-item, .transform-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
