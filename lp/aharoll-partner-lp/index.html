@@ -652,58 +652,34 @@
 
         /* Portfolio Section */
         .portfolio {
-            padding: 8rem 2rem;
-            max-width: 1400px;
+            padding: 6rem 2rem;
+            max-width: var(--max-width);
             margin: 0 auto;
         }
 
         .portfolio h2 {
             text-align: center;
-            margin-bottom: 1rem;
-            font-size: 3rem;
-        }
-        
-        .portfolio > p.section-label {
-            text-align: center;
-        }
-        
-        .portfolio-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
-        }
-        
-        @media (max-width: 900px) {
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
         .portfolio-item {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 16px;
+            border-radius: 12px;
             overflow: hidden;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .portfolio-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
 
         .portfolio-before,
         .portfolio-after {
-            padding: 1.5rem;
+            padding: 1rem;
         }
 
         .portfolio-before {
@@ -713,18 +689,17 @@
         .portfolio-before span,
         .portfolio-after span {
             display: block;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.1em;
             color: var(--text-muted);
-            margin-bottom: 0.75rem;
-            font-weight: 500;
+            margin-bottom: 0.5rem;
         }
 
         .portfolio-placeholder {
             width: 100%;
             aspect-ratio: 1;
-            border-radius: 12px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1287,9 +1262,22 @@
     <section class="portfolio">
         <p class="section-label">Before & After</p>
         <h2>One photo. <em>Unlimited possibilities.</em></h2>
-        <p class="portfolio-subtitle">See how a single product image transforms into scroll-stopping video content.</p>
         
         <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div class="portfolio-before">
+                    <span>Photo</span>
+                    <div class="portfolio-placeholder photo">
+                        <img src="assets/tiffany_knot.webp" alt="Tiffany necklace photo">
+                    </div>
+                </div>
+                <div class="portfolio-after">
+                    <span>Video</span>
+                    <div class="portfolio-placeholder video">
+                        <video src="assets/tiffany_gatsby_1_hd.mp4" autoplay loop muted playsinline></video>
+                    </div>
+                </div>
+            </div>
             <div class="portfolio-item">
                 <div class="portfolio-before">
                     <span>Photo</span>
@@ -1315,62 +1303,6 @@
                     <span>Video</span>
                     <div class="portfolio-placeholder video">
                         <video src="assets/sofa_shot_10_hd.mp4" autoplay loop muted playsinline></video>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <div class="portfolio-before">
-                    <span>Photo</span>
-                    <div class="portfolio-placeholder photo">
-                        <img src="assets/bag.webp" alt="Bag product photo">
-                    </div>
-                </div>
-                <div class="portfolio-after">
-                    <span>Video</span>
-                    <div class="portfolio-placeholder video">
-                        <video src="assets/bagvid.mp4" autoplay loop muted playsinline></video>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <div class="portfolio-before">
-                    <span>Photo</span>
-                    <div class="portfolio-placeholder photo">
-                        <img src="assets/champagneimage.jpg" alt="Champagne product photo">
-                    </div>
-                </div>
-                <div class="portfolio-after">
-                    <span>Video</span>
-                    <div class="portfolio-placeholder video">
-                        <video src="assets/chmapgnevid.mp4" autoplay loop muted playsinline></video>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <div class="portfolio-before">
-                    <span>Photo</span>
-                    <div class="portfolio-placeholder photo">
-                        <img src="assets/dogtreat.webp" alt="Dog treat product photo">
-                    </div>
-                </div>
-                <div class="portfolio-after">
-                    <span>Video</span>
-                    <div class="portfolio-placeholder video">
-                        <video src="assets/dogtreats.mp4" autoplay loop muted playsinline></video>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <div class="portfolio-before">
-                    <span>Photo</span>
-                    <div class="portfolio-placeholder photo">
-                        <img src="assets/workout.webp" alt="Workout product photo">
-                    </div>
-                </div>
-                <div class="portfolio-after">
-                    <span>Video</span>
-                    <div class="portfolio-placeholder video">
-                        <video src="assets/workout.mp4" autoplay loop muted playsinline></video>
                     </div>
                 </div>
             </div>
