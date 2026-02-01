@@ -12,6 +12,7 @@
             --bg: #0a0a0a;
             --bg-elevated: #111111;
             --bg-card: #151515;
+            --bg-subtle: #1a1a1a;
             --text: #fafafa;
             --text-muted: #888;
             --accent: #e8d5b7;
@@ -20,21 +21,16 @@
             --accent-glow: rgba(232, 213, 183, 0.15);
             --border: #1f1f1f;
             --border-light: #2a2a2a;
+            --serif: 'Instrument Serif', Georgia, serif;
+            --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             --max-width: 1200px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: var(--sans);
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
@@ -42,7 +38,6 @@
             overflow-x: hidden;
         }
 
-        /* Ambient background glow */
         body::before {
             content: '';
             position: fixed;
@@ -56,20 +51,20 @@
             z-index: -1;
         }
 
-        /* Keyframes */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
         @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
+            0%, 100% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
         }
 
         @keyframes float {
@@ -77,7 +72,7 @@
             50% { transform: translateY(-10px); }
         }
 
-        /* Navigation */
+        /* ─── NAV ─── */
         nav {
             position: fixed;
             top: 0;
@@ -93,15 +88,8 @@
             border-bottom: 1px solid var(--border);
         }
 
-        .logo {
-            font-weight: 600;
-            font-size: 1.1rem;
-            letter-spacing: -0.02em;
-        }
-
-        .logo span {
-            color: var(--accent);
-        }
+        .logo { font-weight: 600; font-size: 1.1rem; letter-spacing: -0.02em; }
+        .logo span { color: var(--accent); }
 
         nav a.cta {
             color: var(--text);
@@ -112,67 +100,31 @@
             border-radius: 6px;
             transition: all 0.2s ease;
         }
+        nav a.cta:hover { border-color: var(--accent); color: var(--accent); }
 
-        nav a.cta:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        /* Hero with Video Grid */
+        /* ─── HERO with RIGHT-SIDE VIDEO GRID ─── */
         .hero {
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 8rem 2rem 4rem;
-            text-align: center;
+            padding: 8rem 0 6rem;
             position: relative;
             overflow: hidden;
         }
 
-        .video-grid {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .video-grid-item {
-            width: 100px;
-            height: 140px;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .video-grid-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(232, 213, 183, 0.15);
-        }
-
-        .video-grid-item video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        @media (max-width: 768px) {
-            .video-grid-item {
-                width: 60px;
-                height: 84px;
-            }
+        .hero-content {
+            max-width: 550px;
+            position: relative;
+            z-index: 2;
         }
 
         .hero h1 {
-            font-family: 'Instrument Serif', Georgia, serif;
-            font-size: clamp(3rem, 8vw, 5rem);
+            font-family: var(--serif);
+            font-size: clamp(3rem, 7vw, 5.5rem);
             font-weight: 400;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
+            line-height: 1.08;
+            letter-spacing: -0.02em;
             margin-bottom: 1.5rem;
-            max-width: 900px;
             animation: fadeInUp 0.6s ease-out 0.1s both;
         }
 
@@ -185,15 +137,15 @@
         }
 
         .hero-sub {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             color: var(--text-muted);
-            max-width: 650px;
+            max-width: 520px;
             margin-bottom: 2.5rem;
             line-height: 1.7;
             animation: fadeInUp 0.6s ease-out 0.2s both;
         }
 
-        .hero-cta {
+        .btn {
             display: inline-flex;
             align-items: center;
             gap: 0.75rem;
@@ -210,24 +162,90 @@
             overflow: hidden;
         }
 
-        .hero-cta::before {
+        .btn::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
             background-size: 200% 100%;
             animation: shimmer 3s ease-in-out infinite;
         }
 
-        .hero-cta:hover {
+        .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 50px rgba(232, 213, 183, 0.3);
         }
 
-        /* Section base */
+        /* Video grid — absolute right side, 2×3 */
+        .hero-grid {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            display: grid;
+            grid-template-columns: repeat(2, 200px);
+            grid-template-rows: repeat(3, 120px);
+            gap: 12px;
+            z-index: 1;
+            opacity: 0.9;
+        }
+
+        .hero-grid-item {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-grid-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+        }
+
+        .hero-grid-item.placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-subtle) 50%, var(--bg-elevated) 100%);
+            background-size: 200% 200%;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        /* Stagger grid items */
+        .hero-grid-item:nth-child(2) { transform: translateY(20px); }
+        .hero-grid-item:nth-child(3) { transform: translateY(-10px); }
+        .hero-grid-item:nth-child(4) { transform: translateY(30px); }
+        .hero-grid-item:nth-child(5) { transform: translateY(0px); }
+        .hero-grid-item:nth-child(6) { transform: translateY(15px); }
+
+        /* Fade edge */
+        .hero-grid-fade {
+            position: absolute;
+            top: 0;
+            left: -100px;
+            width: 150px;
+            height: 100%;
+            background: linear-gradient(to right, var(--bg) 0%, transparent 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        @media (max-width: 1100px) {
+            .hero-grid {
+                grid-template-columns: repeat(2, 160px);
+                grid-template-rows: repeat(3, 96px);
+                gap: 10px;
+                right: -40px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid { display: none; }
+        }
+
+        /* ─── SECTION BASE ─── */
         section {
             padding: 6rem 2rem;
             max-width: var(--max-width);
@@ -243,18 +261,16 @@
         }
 
         section h2 {
-            font-family: 'Instrument Serif', Georgia, serif;
+            font-family: var(--serif);
             font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 400;
             line-height: 1.2;
             margin-bottom: 1rem;
         }
 
-        section h2 em {
-            font-style: italic;
-        }
+        section h2 em { font-style: italic; }
 
-        /* What You Have / What You Get - Visual Section */
+        /* ─── TRANSFORM: What You Have / What You Get ─── */
         .transform-section {
             padding: 8rem 2rem;
             max-width: 1400px;
@@ -262,13 +278,8 @@
         }
 
         .transform-section .section-label,
-        .transform-section h2 {
-            text-align: center;
-        }
-
-        .transform-section h2 {
-            margin-bottom: 4rem;
-        }
+        .transform-section h2 { text-align: center; }
+        .transform-section h2 { margin-bottom: 4rem; }
 
         .transform-grid {
             display: grid;
@@ -278,13 +289,8 @@
         }
 
         @media (max-width: 900px) {
-            .transform-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            .transform-arrow {
-                transform: rotate(90deg);
-            }
+            .transform-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .transform-arrow { transform: rotate(90deg); }
         }
 
         .transform-box {
@@ -339,20 +345,13 @@
         }
 
         .transform-title {
-            font-family: 'Instrument Serif', Georgia, serif;
+            font-family: var(--serif);
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
         }
 
-        .transform-title em {
-            font-style: italic;
-            color: var(--accent);
-        }
-
-        .transform-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
+        .transform-title em { font-style: italic; color: var(--accent); }
+        .transform-desc { color: var(--text-muted); font-size: 0.95rem; }
 
         .transform-arrow {
             font-size: 3rem;
@@ -360,42 +359,7 @@
             animation: float 3s ease-in-out infinite;
         }
 
-        /* Video Categories */
-        .video-categories {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .video-cat {
-            width: 80px;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .video-cat:hover {
-            transform: scale(1.05);
-        }
-
-        .video-cat video {
-            width: 100%;
-            aspect-ratio: 1;
-            object-fit: cover;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-        }
-
-        .video-cat span {
-            display: block;
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            text-align: center;
-            margin-top: 0.5rem;
-        }
-
-        /* Solution Grid */
+        /* ─── SOLUTION SECTION ─── */
         .solution {
             padding: 8rem 2rem;
             max-width: 1400px;
@@ -403,13 +367,8 @@
         }
 
         .solution .section-label,
-        .solution h2 {
-            text-align: center;
-        }
-
-        .solution h2 {
-            margin-bottom: 1rem;
-        }
+        .solution h2 { text-align: center; }
+        .solution h2 { margin-bottom: 1rem; }
 
         .solution-subtitle {
             text-align: center;
@@ -453,19 +412,12 @@
         }
 
         .io-value {
-            font-family: 'Instrument Serif', Georgia, serif;
+            font-family: var(--serif);
             font-size: 1.5rem;
         }
 
-        .io-value em {
-            color: var(--accent);
-            font-style: italic;
-        }
-
-        .io-arrow {
-            font-size: 2rem;
-            color: var(--accent);
-        }
+        .io-value em { color: var(--accent); font-style: italic; }
+        .io-arrow { font-size: 2rem; color: var(--accent); }
 
         /* Benefits Grid */
         .benefits-grid {
@@ -474,17 +426,8 @@
             gap: 1.5rem;
         }
 
-        @media (max-width: 900px) {
-            .benefits-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 600px) {
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        @media (max-width: 900px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .benefits-grid { grid-template-columns: 1fr; } }
 
         .benefit-card {
             background: linear-gradient(145deg, var(--bg-card), rgba(30,30,30,0.5));
@@ -499,9 +442,7 @@
         .benefit-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--accent), transparent);
             opacity: 0;
@@ -514,9 +455,7 @@
             border-color: var(--border-light);
         }
 
-        .benefit-card:hover::before {
-            opacity: 1;
-        }
+        .benefit-card:hover::before { opacity: 1; }
 
         .benefit-icon {
             width: 48px;
@@ -531,19 +470,10 @@
             font-size: 1.25rem;
         }
 
-        .benefit-card h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-        }
+        .benefit-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; }
+        .benefit-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
 
-        .benefit-card p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        /* Portfolio Section */
+        /* ─── PORTFOLIO ─── */
         .portfolio {
             padding: 8rem 2rem;
             max-width: 1400px;
@@ -552,14 +482,8 @@
         }
 
         .portfolio .section-label,
-        .portfolio h2 {
-            text-align: center;
-        }
-
-        .portfolio h2 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            margin-bottom: 1rem;
-        }
+        .portfolio h2 { text-align: center; }
+        .portfolio h2 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1rem; }
 
         .portfolio-subtitle {
             text-align: center;
@@ -574,11 +498,7 @@
             gap: 2.5rem;
         }
 
-        @media (max-width: 900px) {
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        @media (max-width: 900px) { .portfolio-grid { grid-template-columns: 1fr; } }
 
         .portfolio-item {
             background: var(--bg-card);
@@ -596,13 +516,9 @@
         }
 
         .portfolio-before,
-        .portfolio-after {
-            padding: 1.5rem;
-        }
+        .portfolio-after { padding: 1.5rem; }
 
-        .portfolio-before {
-            border-right: 1px solid var(--border);
-        }
+        .portfolio-before { border-right: 1px solid var(--border); }
 
         .portfolio-before span,
         .portfolio-after span {
@@ -642,7 +558,7 @@
             object-fit: cover;
         }
 
-        /* Case Study */
+        /* ─── CASE STUDY ─── */
         .case-study {
             background: linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg) 100%);
             padding: 6rem 2rem;
@@ -671,10 +587,7 @@
             color: var(--accent);
         }
 
-        .case-meta {
-            color: var(--text-muted);
-            margin-top: 0.5rem;
-        }
+        .case-meta { color: var(--text-muted); margin-top: 0.5rem; }
 
         .case-visual {
             display: grid;
@@ -685,18 +598,11 @@
         }
 
         @media (max-width: 768px) {
-            .case-visual {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            .case-visual-arrow {
-                transform: rotate(90deg);
-            }
+            .case-visual { grid-template-columns: 1fr; gap: 1rem; }
+            .case-visual-arrow { transform: rotate(90deg); }
         }
 
-        .case-visual-item {
-            text-align: center;
-        }
+        .case-visual-item { text-align: center; }
 
         .case-visual-label {
             display: block;
@@ -734,10 +640,7 @@
             object-fit: cover;
         }
 
-        .case-visual-arrow {
-            font-size: 2rem;
-            color: var(--accent);
-        }
+        .case-visual-arrow { font-size: 2rem; color: var(--accent); }
 
         .metrics-grid {
             display: grid;
@@ -746,11 +649,7 @@
             margin-bottom: 2rem;
         }
 
-        @media (max-width: 768px) {
-            .metrics-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+        @media (max-width: 768px) { .metrics-grid { grid-template-columns: repeat(2, 1fr); } }
 
         .metric-card {
             background: var(--bg-card);
@@ -765,18 +664,16 @@
         .metric-card::after {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 120px;
-            height: 120px;
+            width: 120px; height: 120px;
             background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
             opacity: 0.5;
             pointer-events: none;
         }
 
         .metric-card .value {
-            font-family: 'Instrument Serif', Georgia, serif;
+            font-family: var(--serif);
             font-size: 2.5rem;
             background: linear-gradient(135deg, var(--accent) 0%, var(--accent-bright) 100%);
             -webkit-background-clip: text;
@@ -814,20 +711,16 @@
             flex-wrap: wrap;
         }
 
-        .case-summary-item {
-            text-align: center;
-        }
-
+        .case-summary-item { text-align: center; }
         .case-summary-item span {
             display: block;
             font-size: 0.85rem;
             color: var(--text-muted);
             margin-bottom: 0.25rem;
         }
-
         .case-summary-item strong {
             font-size: 1.5rem;
-            font-family: 'Instrument Serif', Georgia, serif;
+            font-family: var(--serif);
         }
 
         .highlight-text {
@@ -837,7 +730,7 @@
             background-clip: text;
         }
 
-        /* CTA Section */
+        /* ─── FINAL CTA ─── */
         .final-cta {
             padding: 10rem 2rem;
             text-align: center;
@@ -848,17 +741,15 @@
         .final-cta::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
+            width: 600px; height: 600px;
             background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
             pointer-events: none;
         }
 
         .final-cta h2 {
-            font-family: 'Instrument Serif', Georgia, serif;
+            font-family: var(--serif);
             font-size: clamp(2rem, 5vw, 3rem);
             margin-bottom: 1rem;
             position: relative;
@@ -873,18 +764,27 @@
             z-index: 1;
         }
 
-        .final-cta .hero-cta {
-            position: relative;
-            z-index: 1;
-        }
+        .final-cta .btn { position: relative; z-index: 1; }
 
-        /* Footer */
+        /* ─── FOOTER ─── */
         footer {
             padding: 3rem 2rem;
             text-align: center;
             border-top: 1px solid var(--border);
             color: var(--text-muted);
             font-size: 0.85rem;
+        }
+
+        /* ─── FADE-UP ANIMATION ─── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -894,32 +794,49 @@
         <a href="mailto:alex@aharoll.com" class="cta">Get in touch</a>
     </nav>
 
-    <!-- Hero with Video Grid -->
+    <!-- Hero with RIGHT-SIDE Video Grid -->
     <section class="hero">
-        <div class="video-grid">
-            <div class="video-grid-item">
-                <video src="assets/tiffany_royal_ascott_uk_1_hd.mp4" autoplay loop muted playsinline></video>
+        <div class="hero-grid">
+            <div class="hero-grid-fade"></div>
+            <!-- Fashion / People-in-suits videos -->
+            <div class="hero-grid-item">
+                <video autoplay muted loop playsinline>
+                    <source src="https://cdn.coverr.co/videos/user-ai-generation-J8YKqrHbGF7t/360p.mp4" type="video/mp4">
+                </video>
             </div>
-            <div class="video-grid-item">
-                <video src="assets/sofa_shot_10_hd.mp4" autoplay loop muted playsinline></video>
+            <div class="hero-grid-item">
+                <video autoplay muted loop playsinline>
+                    <source src="https://cdn.coverr.co/videos/user-ai-generation-xdbPoyLCPjwq/360p.mp4" type="video/mp4">
+                </video>
             </div>
-            <div class="video-grid-item">
-                <video src="assets/bagvid.mp4" autoplay loop muted playsinline></video>
+            <div class="hero-grid-item">
+                <video autoplay muted loop playsinline>
+                    <source src="https://cdn.coverr.co/videos/user-ai-generation-95IqlCg9iwki/360p.mp4" type="video/mp4">
+                </video>
             </div>
-            <div class="video-grid-item">
-                <video src="assets/chmapgnevid.mp4" autoplay loop muted playsinline></video>
+            <div class="hero-grid-item">
+                <video autoplay muted loop playsinline>
+                    <source src="https://cdn.coverr.co/videos/user-ai-generation-YbPk2NsnjntP/360p.mp4" type="video/mp4">
+                </video>
             </div>
-            <div class="video-grid-item">
-                <video src="assets/dogtreats.mp4" autoplay loop muted playsinline></video>
+            <div class="hero-grid-item">
+                <video autoplay muted loop playsinline>
+                    <source src="https://cdn.coverr.co/videos/user-ai-generation-4u6KTwZOVa3Y/360p.mp4" type="video/mp4">
+                </video>
             </div>
-            <div class="video-grid-item">
-                <video src="assets/workout.mp4" autoplay loop muted playsinline></video>
+            <div class="hero-grid-item">
+                <video autoplay muted loop playsinline>
+                    <source src="https://cdn.coverr.co/videos/user-ai-generation-KTMRBOIVNjoz/360p.mp4" type="video/mp4">
+                </video>
             </div>
         </div>
-
-        <h1>Video on <em>every</em> product page.</h1>
-        <p class="hero-sub">Your competitors already have it. Product video increases conversions by 80%. You know this — you just couldn't do it at scale. Until now.</p>
-        <a href="mailto:alex@aharoll.com" class="hero-cta">Start a pilot →</a>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="fade-up">Video on <em>every</em> product page.</h1>
+                <p class="hero-sub fade-up">Your competitors already have it. Product video increases conversions by 80%. You know this — you just couldn't do it at scale. Until now.</p>
+                <a href="mailto:alex@aharoll.com" class="btn fade-up">Start a pilot →</a>
+            </div>
+        </div>
     </section>
 
     <!-- What You Have / What You Get -->
@@ -1027,13 +944,13 @@
                 <div class="portfolio-before">
                     <span>Photo</span>
                     <div class="portfolio-placeholder photo">
-                        <img src="assets/sofa_before.jpg" alt="Sofa product photo">
+                        <img src="assets/S821_30_SE12_1V01.avif" alt="Sofa product photo">
                     </div>
                 </div>
                 <div class="portfolio-after">
                     <span>Video</span>
                     <div class="portfolio-placeholder video">
-                        <video src="assets/sofa_after.mp4" autoplay loop muted playsinline></video>
+                        <video src="assets/sofa_shot_10_hd.mp4" autoplay loop muted playsinline></video>
                     </div>
                 </div>
             </div>
@@ -1090,48 +1007,6 @@
                     <span>Video</span>
                     <div class="portfolio-placeholder video">
                         <video src="assets/workout.mp4" autoplay loop muted playsinline></video>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <div class="portfolio-before">
-                    <span>Photo</span>
-                    <div class="portfolio-placeholder photo">
-                        <img src="assets/sandwich_before.jpg" alt="Sandwich product photo">
-                    </div>
-                </div>
-                <div class="portfolio-after">
-                    <span>Video</span>
-                    <div class="portfolio-placeholder video">
-                        <video src="assets/sandwich_after.mp4" autoplay loop muted playsinline></video>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <div class="portfolio-before">
-                    <span>Photo</span>
-                    <div class="portfolio-placeholder photo">
-                        <img src="assets/shoe_before.jpg" alt="Shoe product photo">
-                    </div>
-                </div>
-                <div class="portfolio-after">
-                    <span>Video</span>
-                    <div class="portfolio-placeholder video">
-                        <video src="assets/shoe_after.mp4" autoplay loop muted playsinline></video>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <div class="portfolio-before">
-                    <span>Photo</span>
-                    <div class="portfolio-placeholder photo">
-                        <img src="assets/croisant_b.jpg" alt="Croissant product photo">
-                    </div>
-                </div>
-                <div class="portfolio-after">
-                    <span>Video</span>
-                    <div class="portfolio-placeholder video">
-                        <video src="assets/croisant_a.mp4" autoplay loop muted playsinline></video>
                     </div>
                 </div>
             </div>
@@ -1206,11 +1081,24 @@
     <section class="final-cta">
         <h2>Ready to close the gap?</h2>
         <p>Start with a 2-week pilot. Pick 50–200 SKUs. See what's possible.</p>
-        <a href="mailto:alex@aharoll.com" class="hero-cta">Let's talk →</a>
+        <a href="mailto:alex@aharoll.com" class="btn">Let's talk →</a>
     </section>
 
     <footer>
         <p>© 2025 AhaRoll</p>
     </footer>
+
+    <script>
+        // Fade-up on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
