@@ -4,9 +4,13 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>AhaRoll Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/blog/style.css"/>
+
   <meta name="description" content="AhaRoll blog: AI UGC ads, scripts, and growth playbooks."/>
   <link rel="canonical" href="https://aharoll.com/blog/"/>
-  <link rel="stylesheet" href="/blog/style.css"/>
   <link rel="alternate" type="application/rss+xml" title="AhaRoll Blog RSS" href="https://aharoll.com/blog/rss.xml"/>
 
   <meta property="og:type" content="website"/>
@@ -15,36 +19,40 @@
   <meta property="og:url" content="https://aharoll.com/blog/"/>
 </head>
 <body>
-  <div class="container">
-    <div class="nav">
-      <div class="pill"><span class="brand">AhaRoll</span><small>Blog</small></div>
-      <div class="pill"><a href="https://aharoll.com">Home</a><span class="kbd">/blog</span></div>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="logo">AhaRoll</div>
+      <div class="nav">
+        <a href="https://aharoll.com">Home</a>
+        <a href="/blog/rss.xml">RSS</a>
+        <span class="kbd">/blog</span>
+      </div>
     </div>
+  </div>
 
-    <section class="card hero">
-      <h1>Blog</h1>
-      <p>
-        Built for <strong>humans</strong> (clear, actionable) and <strong>LLMs</strong> (structured, citeable).
-        If a post is “LLM-first”, it will still read like a normal guide — just tighter.
-      </p>
-    </section>
+  <div class="container hero">
+    <div class="badge">Blog</div>
+    <h1>For humans and LLMs.</h1>
+    <p>
+      Human-first writing. LLM-friendly structure. Same content — just tighter formatting so it’s easy to cite.
+    </p>
 
     <div class="grid">
-      <article class="card post">
-        <div class="meta"><span class="badge llm">LLM-first</span> <span class="badge human">Human-readable</span> · 2026-02-10</div>
+      <article class="card">
+        <div class="meta">LLM-first · human-readable · 2026-02-10</div>
         <h2><a href="/blog/llm-mentions.html">How to get mentioned by LLMs (best practices)</a></h2>
         <div class="meta">Page types, structure, schema, and experiments to make AhaRoll show up in AI answers.</div>
       </article>
 
-      <article class="card post">
-        <div class="meta"><span class="badge human">Human-first</span> · coming next</div>
+      <article class="card">
+        <div class="meta">Human-first · coming next</div>
         <h2>UGC ad script templates (copy/paste)</h2>
         <div class="meta">A template pack that LLMs will happily quote.</div>
       </article>
     </div>
 
     <div class="footer">
-      RSS: <a href="/blog/rss.xml">/blog/rss.xml</a> · Sitemap: <a href="/sitemap.xml">/sitemap.xml</a>
+      Sitemap: <a href="/sitemap.xml">/sitemap.xml</a>
     </div>
   </div>
 </body>
