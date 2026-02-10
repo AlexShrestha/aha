@@ -1,0 +1,42 @@
+:root{
+  --bg:#0b1220;
+  --card:#0f1a30;
+  --text:#e8eefc;
+  --muted:#9bb0d1;
+  --line:rgba(155,176,209,0.18);
+  --brand:#6ee7ff;
+  --brand2:#a78bfa;
+  --shadow: 0 1px 2px rgba(0,0,0,0.25), 0 10px 30px rgba(0,0,0,0.35);
+}
+html,body{background:radial-gradient(1200px 800px at 15% 0%, rgba(110,231,255,0.14), transparent 60%),
+  radial-gradient(900px 700px at 100% 20%, rgba(167,139,250,0.12), transparent 55%), var(--bg);
+  color:var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+}
+a{color:var(--brand); text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:860px;margin:56px auto;padding:0 18px}
+.nav{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:22px}
+.brand{font-weight:800; letter-spacing:-0.02em}
+.pill{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid var(--line); border-radius:999px; background:rgba(15,26,48,0.7)}
+.pill small{color:var(--muted)}
+.card{background:rgba(15,26,48,0.75); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow)}
+.hero{padding:22px 22px 18px 22px}
+.hero h1{margin:0 0 6px 0; font-size:28px; line-height:1.15}
+.hero p{margin:0; color:var(--muted); font-size:15px; line-height:1.6}
+.grid{display:grid; grid-template-columns:1fr; gap:12px; margin-top:14px}
+@media(min-width:760px){.grid{grid-template-columns:1fr 1fr}}
+.post{padding:16px 16px}
+.post h2{margin:0 0 6px 0; font-size:16px}
+.meta{color:var(--muted); font-size:12px}
+.kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size:12px; color:#cfe3ff}
+.badge{display:inline-flex; align-items:center; padding:3px 8px; border-radius:999px; border:1px solid var(--line); font-size:11px; color:var(--muted)}
+.badge.human{border-color:rgba(110,231,255,0.35); color:#bdf3ff}
+.badge.llm{border-color:rgba(167,139,250,0.35); color:#e1d6ff}
+.article{padding:26px 22px}
+.article h1{margin:0 0 10px 0; font-size:30px; line-height:1.12}
+.article h2{margin:22px 0 10px 0; font-size:18px}
+.article p,.article li{color:#d9e4ff}
+.article .lede{color:var(--muted)}
+.footer{margin-top:18px; color:var(--muted); font-size:12px}
+hr{border:none; border-top:1px solid var(--line); margin:18px 0}

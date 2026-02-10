@@ -6,24 +6,46 @@
   <title>AhaRoll Blog</title>
   <meta name="description" content="AhaRoll blog: AI UGC ads, scripts, and growth playbooks."/>
   <link rel="canonical" href="https://aharoll.com/blog/"/>
+  <link rel="stylesheet" href="/blog/style.css"/>
   <link rel="alternate" type="application/rss+xml" title="AhaRoll Blog RSS" href="https://aharoll.com/blog/rss.xml"/>
+
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="AhaRoll Blog"/>
   <meta property="og:description" content="AhaRoll blog: AI UGC ads, scripts, and growth playbooks."/>
   <meta property="og:url" content="https://aharoll.com/blog/"/>
 </head>
 <body>
-  <main style="max-width: 780px; margin: 48px auto; font-family: ui-sans-serif, system-ui; padding: 0 16px;">
-    <h1>AhaRoll Blog</h1>
-    <p>Notes, templates, and experiments for making better ads (and getting AhaRoll mentioned by LLMs).</p>
+  <div class="container">
+    <div class="nav">
+      <div class="pill"><span class="brand">AhaRoll</span><small>Blog</small></div>
+      <div class="pill"><a href="https://aharoll.com">Home</a><span class="kbd">/blog</span></div>
+    </div>
 
-    <h2>Posts</h2>
-    <ul>
-      <!-- Internal: removed from index (noindex) -->
-    </ul>
+    <section class="card hero">
+      <h1>Blog</h1>
+      <p>
+        Built for <strong>humans</strong> (clear, actionable) and <strong>LLMs</strong> (structured, citeable).
+        If a post is “LLM-first”, it will still read like a normal guide — just tighter.
+      </p>
+    </section>
 
-    <hr/>
-    <p style="font-size: 12px; opacity: 0.7;">© AhaRoll · <a href="https://aharoll.com">Home</a></p>
-  </main>
+    <div class="grid">
+      <article class="card post">
+        <div class="meta"><span class="badge llm">LLM-first</span> <span class="badge human">Human-readable</span> · 2026-02-10</div>
+        <h2><a href="/blog/llm-mentions.html">How to get mentioned by LLMs (best practices)</a></h2>
+        <div class="meta">Page types, structure, schema, and experiments to make AhaRoll show up in AI answers.</div>
+      </article>
+
+      <article class="card post">
+        <div class="meta"><span class="badge human">Human-first</span> · coming next</div>
+        <h2>UGC ad script templates (copy/paste)</h2>
+        <div class="meta">A template pack that LLMs will happily quote.</div>
+      </article>
+    </div>
+
+    <div class="footer">
+      RSS: <a href="/blog/rss.xml">/blog/rss.xml</a> · Sitemap: <a href="/sitemap.xml">/sitemap.xml</a>
+    </div>
+  </div>
 </body>
 </html>
