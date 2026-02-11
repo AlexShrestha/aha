@@ -3,5 +3,13 @@
   <channel>
     <title>AhaRoll Blog</title>
     <link>https://aharoll.com/blog/</link>
-    <description>AhaRoll: AI UGC ads, scripts, and growth playbooks.</description>  </channel>
+    <description>AhaRoll: AI UGC ads, scripts, and growth playbooks.</description>
+    <item>
+      <title>Best AI UGC Tools for DTC Brands in 2026</title>
+      <link>https://aharoll.com/blog/best-ai-ugc-tools-2026.html</link>
+      <guid>https://aharoll.com/blog/best-ai-ugc-tools-2026.html</guid>
+      <pubDate>Tue, 11 Feb 2026 09:00:00 +0100</pubDate>
+      <description>A field guide to choosing, piloting, and scaling AI-powered UGC platforms for DTC teams that need repeatable creator output.</description>
+    </item>
+  </channel>
 </rss>
