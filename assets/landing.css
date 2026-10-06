@@ -732,6 +732,10 @@ a:hover {
   display: block;
 }
 
+.detail__body {
+  padding: 16px 18px 18px;
+}
+
 .detail h3 {
   margin: 0 0 12px;
   font-variation-settings: "wdth" 112;
@@ -1099,8 +1103,18 @@ a:hover {
   border-radius: var(--radius) var(--radius) 80px 80px;
   box-shadow: 0 0 0 1px var(--blade-edge), -6px 14px 28px -18px rgba(0, 0, 0, 0.55);
   overflow: hidden;
+  --rot: var(--r);
   transform-origin: 50% 140%;
-  transform: rotate(var(--r));
+  transform: rotate(var(--rot));
+  transition: transform 1s var(--ease-fan);
+}
+
+.ladder__step ul,
+.pblade > b,
+.pblade__per,
+.pblade p {
+  transform: rotate(calc(var(--rot, 0deg) * -1));
+  transform-origin: 0 50%;
   transition: transform 1s var(--ease-fan);
 }
 
@@ -1109,7 +1123,7 @@ a:hover {
 .ladder__step:nth-child(4) { transition-delay: 180ms; }
 
 .js .ladder:not(.is-inview) .ladder__step {
-  transform: rotate(0deg);
+  --rot: 0deg;
 }
 
 .ladder__step::after {
@@ -1205,10 +1219,13 @@ a:hover {
   border-left: 1px solid var(--blade-edge);
 }
 
-.steps .code {
-  display: block;
-  margin-bottom: 14px;
+.steps b span {
+  display: inline-block;
+  min-width: 1.4em;
+  font-variation-settings: "wdth" 125;
+  font-weight: 800;
   color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
 }
 
 .steps b {
@@ -1309,13 +1326,14 @@ a:hover {
   background: var(--blade);
   border-radius: var(--radius) var(--radius) 120px 120px;
   box-shadow: 0 0 0 1px var(--blade-edge), -6px 16px 30px -18px rgba(0, 0, 0, 0.55);
+  --rot: var(--r);
   transform-origin: 50% 130%;
-  transform: rotate(var(--r));
+  transform: rotate(var(--rot));
   transition: transform 1s var(--ease-fan);
 }
 
 .js .price__blades:not(.is-inview) .pblade {
-  transform: rotate(0deg);
+  --rot: 0deg;
 }
 
 .pblade__tip {
@@ -1873,6 +1891,7 @@ a:hover {
 
   .ladder__step {
     --r: 0deg !important;
+    --rot: 0deg !important;
     min-height: 0;
   }
 
@@ -2013,6 +2032,7 @@ a:hover {
 
   .pblade {
     --r: 0deg !important;
+    --rot: 0deg !important;
     min-height: 300px;
     padding: 0 14px 50px;
   }

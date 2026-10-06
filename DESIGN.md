@@ -143,10 +143,12 @@ Physical, low and directional, like paper on a desk. Blades get a 1px edge ring 
 
 - **Blade** (`.blade`, a button) has, in order: severity tip with code and number, product name (up to 3 lines), three chips, formula codes, rivet. Hover and focus lift it 16px along its radius; selection lifts it 34px and desaturates the others (filter, not opacity).
 - **Cover** holds a code head, a title, the scan form (dark input with an ochre focus ring, ochre Scan button), status (role=status), a progress hairline (scaleX) and fine print. After a scan, the same cover shows a tally of four severity tiles and two actions.
-- **Detail panel**: the pulled blade laid flat. It has a severity tip bar, thumbnails, three scores on hairline columns and the findings list. It sits at the top-right on desktop and becomes a bottom sheet under 1080px.
+- **Detail panel**: the pulled blade laid flat. Severity and type sit only in its tip bar, next to the close button. It also has thumbnails, three scores on hairline columns and the findings list. It sits at the top-right on desktop and becomes a bottom sheet under 1080px.
 - **Inspection sheet**: a horizontal blade with a severity tip on the left edge and five shots, each a 4:5 image or hatched empty with a note underneath.
 - **Guide row**: a blade laid flat holding the category name and its required shots as chips (filled is required, hatched is optional).
-- **Severity strip** (`.ladder`): four chips in one strip with definitions below.
+- **Severity fan** (`.ladder`): four tipped, riveted blades rotated ±2.5° and ±5° about a low common pivot. They open from upright on scroll, and their contents counter-rotate so the text stays level. They stack upright under 1080px.
+- **Run blade** (`.runblade`): one long blade laid flat, with a black vertical tip and rivet and four step compartments. Step numbers live inside the step title, never above it.
+- **Price blades** (`.pblade`): two upright riveted blades with black tips coding the period and allowance. The heading sits beside them in the CTA column.
 - **Report**: a severity bar (segments flex by count), a common-problems list, filter chips and product rows (severity tip, thumbnail, title, findings).
 - **Buttons**: Ink primary, Blade White light, ghost with a 1.5px inset ring. All have 6px radius, width 112 at weight 650, and a 1px lift on hover.
 
