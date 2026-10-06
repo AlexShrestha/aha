@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-06T00:00:00Z",
+  "title": "Design System: Asset Audit by Aharoll",
+  "extensions": {
+    "colorMeta": {
+      "booth-gray": { "role": "neutral", "displayName": "Booth Gray" },
+      "blade-white": { "role": "neutral", "displayName": "Blade White" },
+      "ink": { "role": "primary", "displayName": "Guide Ink" },
+      "cover-black": { "role": "neutral", "displayName": "Cover Black" },
+      "severity-critical": { "role": "tertiary", "displayName": "Critical Vermilion" },
+      "severity-high": { "role": "tertiary", "displayName": "High Orange" },
+      "severity-medium": { "role": "secondary", "displayName": "Medium Ochre (also the action color on dark)" },
+      "severity-low": { "role": "tertiary", "displayName": "Low Sage" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headline only." },
+      "headline": { "displayName": "Headline", "purpose": "Section headings." },
+      "title": { "displayName": "Title", "purpose": "Product names, panel and sheet titles, FAQ questions." },
+      "body": { "displayName": "Body", "purpose": "Running text, 46-68ch." },
+      "code": { "displayName": "Formula code", "purpose": "Labels on objects: severity, blade number, scores, shot names. Never sentences." }
+    },
+    "shadows": [
+      { "name": "blade", "value": "0 0 0 1px #e6e7e2, -6px 10px 22px -14px rgba(0,0,0,0.55)", "purpose": "A blade resting in the fan." },
+      { "name": "blade-selected", "value": "0 0 0 1px #e6e7e2, -10px 18px 36px -14px rgba(0,0,0,0.6)", "purpose": "The pulled blade." },
+      { "name": "sheet", "value": "0 0 0 1px #e6e7e2, 0 24px 50px -30px rgba(0,0,0,0.5)", "purpose": "Blades laid flat: sheet, pricing." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Reveals, panels, buttons." },
+      { "name": "ease-fan", "value": "cubic-bezier(0.12, 0.9, 0.24, 1)", "purpose": "Blades opening: 0.9s, staggered by 6ms per degree from center." },
+      { "name": "fan-close", "value": "0.45s", "purpose": "Collapse to the stack before re-fanning with scan results." }
+    ],
+    "breakpoints": [
+      { "name": "narrow", "value": "760px" },
+      { "name": "tablet", "value": "1080px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Severity chip",
+      "kind": "chip",
+      "refersTo": "severity-chip",
+      "description": "The only place saturated color lives.",
+      "html": "<span class=\"ds-chip\" style=\"--c:#e2321f\"></span> <span class=\"ds-chip\" style=\"--c:#f17c1c\"></span> <span class=\"ds-chip\" style=\"--c:#e0ad1a\"></span> <span class=\"ds-chip\" style=\"--c:#8aac84\"></span>",
+      "css": ".ds-chip{display:inline-block;width:28px;height:18px;border-radius:2px;background:var(--c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}"
+    },
+    {
+      "name": "Hatched empty",
+      "kind": "custom",
+      "description": "Notation for a missing shot.",
+      "html": "<div class=\"ds-empty\"><span>Missing</span></div>",
+      "css": ".ds-empty{width:96px;aspect-ratio:1;border-radius:2px;display:grid;place-items:end start;padding:4px;background:repeating-linear-gradient(-45deg,transparent 0 5px,rgba(18,20,19,.18) 5px 6px),#fbfbf8;box-shadow:inset 0 0 0 1px #b4b6b0;font:600 9px/1 Archivo,sans-serif;letter-spacing:.05em;text-transform:uppercase;color:#454946}"
+    },
+    {
+      "name": "Primary button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Install on Shopify and other primary actions.",
+      "html": "<button class=\"ds-btn\">Install on Shopify</button>",
+      "css": ".ds-btn{height:48px;padding:0 22px;border:0;border-radius:6px;background:#121413;color:#fbfbf8;font:650 15px Archivo,sans-serif;font-variation-settings:'wdth' 112;box-shadow:0 1px 0 rgba(0,0,0,.2),0 6px 14px -8px rgba(0,0,0,.45);cursor:pointer;transition:transform .25s cubic-bezier(.16,1,.3,1)}.ds-btn:hover{transform:translateY(-1px)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The swatch fan guide",
+    "overview": "The catalog is a printer's formula guide: one blade per product, photos as chips, missing shots as hatched empties, severity painted on the tip. The black cover blade carries the action.",
+    "keyCharacteristics": ["Booth-gray ground", "Severity is the only saturated color", "One grotesk across widths", "Hatched empties for missing"],
+    "rules": [
+      { "name": "Color means severity", "body": "Every saturated color maps to a severity; everything else is gray, white or black.", "section": "colors" },
+      { "name": "One family, many widths", "body": "Archivo at width 125 for display, 118 for codes, 100 for reading.", "section": "typography" },
+      { "name": "Lift along the radius", "body": "Blades move outward along their own axis; nothing scales.", "section": "elevation" }
+    ],
+    "dos": ["Do keep the scan on the cover blade", "Do label every third-party number with its source"],
+    "donts": ["Don't add kickers above headings", "Don't use glow, glass or gradient decoration", "Don't invent reviews or customer logos"]
+  }
+}
