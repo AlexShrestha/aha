@@ -1,143 +1,375 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MM75JW88BY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-MM75JW88BY');
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aharoll</title>
-    
-    <meta name="description" content="The tool that changes everything. No explanations needed.">
-    <meta property="og:title" content="aharoll">
-    <meta property="og:description" content="You already know why you're here.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://aharoll.com">
-    <meta property="og:image" content="https://aharoll.com/og-image.png">
-    <meta name="twitter:card" content="summary_large_image">
-    
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%232dd4a8'/%3E%3Cstop offset='100%25' stop-color='%23d4c82d'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='%230a0a0a'/%3E%3Ctext x='50' y='68' font-family='system-ui' font-size='55' font-weight='bold' fill='url(%23g)' text-anchor='middle'%3Ea%3C/text%3E%3C/svg%3E">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --bg: #0a0a0a; --text: #ffffff; --text-dim: #666666; --accent: #2dd4a8; --accent-hover: #34eabc; --yellow: #d4c82d; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'JetBrains Mono', monospace; background-color: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; overflow-x: hidden; }
-        
-        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.15) 2px, rgba(0, 0, 0, 0.15) 4px); pointer-events: none; z-index: 1000; animation: scanFlicker 0.1s infinite; }
-        @keyframes scanFlicker { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.35; } }
-        
-        body::after { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); opacity: 0.04; pointer-events: none; z-index: 999; }
-        
-        nav { position: fixed; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 3rem; z-index: 100; background: linear-gradient(to bottom, var(--bg) 0%, transparent 100%); }
-        .logo { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; }
-        .login-link { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
-        .login-link:hover { color: var(--text); }
-        
-        section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 6rem 2rem; position: relative; }
-        
-        .hero { text-align: center; }
-        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.03em; animation: textGlitch 3s infinite; }
-        @keyframes textGlitch { 0%, 92%, 100% { text-shadow: none; transform: translate(0); } 93% { text-shadow: -2px 0 #ff0040, 2px 0 #00ffff; transform: translate(-1px, 0); } 94% { text-shadow: 2px 0 #ff0040, -2px 0 #00ffff; transform: translate(1px, 0); } 95% { text-shadow: none; transform: translate(0); } 96% { text-shadow: -1px 0 #ff0040, 1px 0 #00ffff; transform: translate(0, -1px); } 97% { text-shadow: none; transform: translate(0); } }
-        
-        .hero h1 .highlight { color: var(--yellow); display: inline-block; animation: rgbShift 4s infinite; }
-        @keyframes rgbShift { 0%, 90%, 100% { text-shadow: none; } 91% { text-shadow: -2px 0 #ff0040, 2px 0 #00ffff; } 92% { text-shadow: 2px 0 #ff0040, -2px 0 #00ffff; } 93% { text-shadow: 0 -1px #ff0040, 0 1px #00ffff; } 94% { text-shadow: none; } }
-        
-        .hero .subtitle { color: var(--text-dim); font-size: 1rem; margin-bottom: 3rem; }
-        
-        .cta-button { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--accent); color: var(--bg); padding: 1rem 2rem; font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 600; text-decoration: none; border-radius: 4px; transition: all 0.2s; }
-        .cta-button:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 0 30px rgba(45, 212, 168, 0.4); }
-        .cta-button svg { width: 18px; height: 18px; }
-        
-        .social-proof { margin-top: 2rem; color: var(--text-dim); font-size: 0.85rem; position: relative; }
-        .social-proof::before { content: ''; position: absolute; left: -20px; top: 50%; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(45, 212, 168, 0.7); } 50% { box-shadow: 0 0 0 10px rgba(45, 212, 168, 0); } }
-        
-        .features { text-align: center; }
-        .features h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: 1rem; }
-        .features .subtitle { color: var(--text-dim); margin-bottom: 4rem; }
-        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem; max-width: 900px; }
-        .feature h3 { color: var(--accent); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .feature p { color: var(--text-dim); font-size: 0.9rem; }
-        
-        .how-it-works { text-align: center; min-height: 60vh; }
-        .how-it-works h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: 1rem; }
-        .how-it-works .subtitle { color: var(--text-dim); }
-        .show-link { color: var(--accent); text-decoration: none; }
-        .show-link:hover { text-shadow: 0 0 10px var(--accent); }
-        
-        .trust { text-align: center; min-height: 40vh; }
-        .trust .label { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 2rem; letter-spacing: 0.05em; }
-        .trust-logos { display: flex; gap: 3rem; justify-content: center; opacity: 0.3; }
-        .trust-logo { width: 80px; height: 30px; background: var(--text); border-radius: 4px; }
-        
-        .cta-section { text-align: center; min-height: 80vh; }
-        .cta-section h2 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; margin-bottom: 1rem; }
-        .cta-section .subtitle { color: var(--text-dim); margin-bottom: 2.5rem; }
-        .no-cc { margin-top: 1.5rem; color: var(--text-dim); font-size: 0.85rem; }
-        
-        footer { padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); }
-        footer .logo { color: var(--text-dim); }
-        footer .copyright { color: var(--text-dim); font-size: 0.85rem; }
-        
-        @media (max-width: 768px) { 
-            nav { padding: 1rem 1.5rem; } 
-            .features-grid { grid-template-columns: 1fr; gap: 2.5rem; } 
-            footer { flex-direction: column; gap: 1rem; } 
-        }
-    </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MM75JW88BY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MM75JW88BY');
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Asset Audit by Aharoll: find what's wrong with your Shopify product photos</title>
+  <meta name="description" content="Asset Audit scans every Shopify product's photos for missing shots, color variants with no image, mismatched crops and SEO gaps, then ranks them by severity. Scan your store free in seconds.">
+  <link rel="canonical" href="https://aharoll.com/">
+  <meta name="theme-color" content="#d8d9d5">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aharoll.com/">
+  <meta property="og:title" content="Asset Audit by Aharoll: your catalog, fanned out by what's broken">
+  <meta property="og:description" content="Missing shots, color variants with no photo, mismatched crops, missing alt text. Ranked by severity. Free scan in seconds.">
+  <meta property="og:image" content="https://aharoll.com/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="apple-touch-icon" href="/lp/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&display=swap">
+  <link rel="stylesheet" href="/assets/landing.css">
+  <script>document.documentElement.classList.add('js')</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Asset Audit by Aharoll",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Shopify",
+        "url": "https://apps.shopify.com/aharoll-asset-auditor",
+        "description": "AI image audit for Shopify that finds product photo issues: missing shots, variant media gaps, inconsistent backgrounds and crops, and SEO problems, ranked by severity.",
+        "offers": [
+          { "@type": "Offer", "price": "20", "priceCurrency": "USD", "description": "Monthly, 100 products" },
+          { "@type": "Offer", "price": "200", "priceCurrency": "USD", "description": "Yearly" }
+        ],
+        "publisher": { "@type": "Organization", "name": "Aharoll", "url": "https://aharoll.com" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Does Asset Audit change my products or theme?", "acceptedAnswer": { "@type": "Answer", "text": "No. The app only asks for read access to products. It never edits products, themes or store settings." } },
+          { "@type": "Question", "name": "What's the difference between the free scan and the app?", "acceptedAnswer": { "@type": "Answer", "text": "The free scan reads your public catalog and checks structure: photo counts, color variants without a photo, mixed crops, low resolution, filenames and a sample of alt text. The app adds AI vision on the photos themselves: backgrounds, angles, lighting, and which shots each category is missing." } },
+          { "@type": "Question", "name": "How much does it cost?", "acceptedAnswer": { "@type": "Answer", "text": "$20 per month for 100 products, or $200 per year, billed through Shopify." } }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
-    <nav><div class="logo">aharoll</div><a href="/login.html" class="login-link">login</a></nav>
-    
-    <section class="hero">
-        <h1>You already know<br><span class="highlight">why you're here.</span></h1>
-        <p class="subtitle">The tool that changes everything. No explanations needed.</p>
-        <a href="mailto:a@aharoll.com?subject=Request Access" class="cta-button">Request Access<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg></a>
-        <p class="social-proof">2,847 people joined this week</p>
-    </section>
-    
-    <section class="features">
-        <h2>Built different.</h2>
-        <p class="subtitle">You'll understand when you try it.</p>
-        <div class="features-grid">
-            <div class="feature"><h3>Fast</h3><p>Minutes, not hours.</p></div>
-            <div class="feature"><h3>Simple</h3><p>No learning curve.</p></div>
-            <div class="feature"><h3>Powerful</h3><p>Results speak.</p></div>
+  <a class="sr-only" href="#main">Skip to content</a>
+
+  <header class="nav" id="nav">
+    <div class="wrap nav__inner">
+      <a class="brand" href="/" aria-label="Aharoll home">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <g transform="translate(16 29)">
+            <rect x="-3" y="-26" width="6" height="26" rx="3" fill="#e2321f" transform="rotate(-38)"/>
+            <rect x="-3" y="-26" width="6" height="26" rx="3" fill="#f17c1c" transform="rotate(-13)"/>
+            <rect x="-3" y="-26" width="6" height="26" rx="3" fill="#e0ad1a" transform="rotate(13)"/>
+            <rect x="-3" y="-26" width="6" height="26" rx="3" fill="#121413" transform="rotate(38)"/>
+            <circle r="2" fill="#fbfbf8"/>
+          </g>
+        </svg>
+        aharoll
+        <small>Asset Audit</small>
+      </a>
+      <ul class="nav__links">
+        <li><a href="#checks">What it checks</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a class="btn" data-install="nav" href="https://apps.shopify.com/aharoll-asset-auditor?utm_source=aharoll.com&amp;utm_medium=landing&amp;utm_campaign=nav">
+        Install on Shopify
+      </a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero__top">
+        <h1 id="hero-title">Your catalog, fanned out by what's broken.</h1>
+        <div class="hero__side">
+          <p class="hero__lede">Asset Audit checks every Shopify product's photos for missing shots, color variants with no image, mismatched crops and SEO gaps. Then it ranks them, so you fix the ones costing sales first.</p>
+          <div class="legend" aria-hidden="true">
+            <span class="legend__row"><span class="chip sev-critical"></span>Critical</span>
+            <span class="legend__row"><span class="chip sev-high"></span>High</span>
+            <span class="legend__row"><span class="chip sev-medium"></span>Medium</span>
+            <span class="legend__row"><span class="chip sev-low"></span>Low</span>
+          </div>
         </div>
-    </section>
-    
-    <section class="how-it-works">
-        <h2>How does it work?</h2>
-        <p class="subtitle">We could explain.</p>
-        <p>But it's easier to just <a href="mailto:a@aharoll.com?subject=Show me" class="show-link">show you.</a></p>
-    </section>
-    
-    <section class="trust">
-        <p class="label">Trusted by the most amazing teams</p>
-        <div class="trust-logos">
-            <div class="trust-logo"></div>
-            <div class="trust-logo"></div>
-            <div class="trust-logo"></div>
-            <div class="trust-logo"></div>
-            <div class="trust-logo"></div>
+      </div>
+
+      <div class="fan" id="fan">
+        <div class="fan__area">
+          <div class="fan__stage" id="fan-stage" role="group" aria-label="Sample audit: products fanned out by severity. Select a blade for its findings."></div>
         </div>
+
+        <div class="cover" id="cover">
+          <div class="cover__tip code"><span id="cover-kicker">Free scan</span><span id="cover-source">Sample catalog shown</span></div>
+          <div id="cover-form">
+            <h2>Scan your store free</h2>
+            <p>Put your own products in this fan. Takes about five seconds.</p>
+            <form class="scan-form" id="scan-form" novalidate>
+              <label class="sr-only" for="store">Your store's web address</label>
+              <input id="store" name="store" type="text" inputmode="url" autocomplete="url" autocapitalize="off" spellcheck="false" placeholder="yourstore.com" required>
+              <button class="btn" type="submit" id="scan-btn">Scan</button>
+            </form>
+            <div class="progress" id="progress" aria-hidden="true"><span></span></div>
+            <div class="cover__status" id="status" role="status" aria-live="polite"></div>
+            <div class="cover__fine">Reads your public catalog only. Runs in your browser; nothing is stored.</div>
+          </div>
+          <div class="cover__result" id="cover-result" hidden></div>
+        </div>
+
+        <aside class="detail" id="detail" aria-labelledby="detail-title" tabindex="-1"></aside>
+      </div>
     </section>
-    
-    <section class="cta-section">
-        <h2>Ready?</h2>
-        <p class="subtitle">Limited spots available.</p>
-        <a href="mailto:a@aharoll.com?subject=Early Access" class="cta-button">Get Early Access<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg></a>
-        <p class="no-cc">No credit card required</p>
+
+    <section class="report" id="report" hidden aria-labelledby="report-title"></section>
+
+    <section class="section section--rule" id="checks" aria-labelledby="checks-title">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <h2 id="checks-title">It looks at the photos, not just the file names.</h2>
+          <p class="section__lede">Image SEO apps rename files and write alt text. Asset Audit reads each gallery the way a shopper does, with AI vision, and knows what a complete gallery looks like for that kind of product.</p>
+        </div>
+
+        <article class="sheet reveal" aria-label="Example audit of one product">
+          <div class="sheet__tip code"><span>Critical</span><span>Sample report</span></div>
+          <div class="sheet__body">
+            <div class="sheet__meta">
+              <h3>Linen crossbody bag</h3>
+              <span class="code">Bags · 2 photos · Cov 55 · Var 50 · Seo 70</span>
+            </div>
+            <ul class="sheet__grid">
+              <li class="shot">
+                <div class="shot__img">
+                  <img src="/assets/sample/bag.webp" alt="Linen crossbody bag, front view" width="640" height="960" loading="lazy">
+                  <span class="shot__tag code sev-medium">Bg</span>
+                </div>
+                <div class="shot__note"><b>Front</b><span>Warm gray backdrop. The rest of your bags shoot on white.</span></div>
+              </li>
+              <li class="shot">
+                <div class="shot__img" style="--pos: 50% 34%; --zoom: 2.2">
+                  <img src="/assets/sample/bag.webp" alt="Close-up of the bag's flap and stitching" width="640" height="960" loading="lazy">
+                </div>
+                <div class="shot__note"><b>Detail</b><span>Clasp and stitching. Good.</span></div>
+              </li>
+              <li class="shot">
+                <div class="shot__img shot__img--empty"><span class="code">Missing</span><span class="mark" aria-hidden="true"></span></div>
+                <div class="shot__note"><b>Back view</b><span>Every bag needs one. Shoppers check pockets and straps.</span></div>
+              </li>
+              <li class="shot">
+                <div class="shot__img shot__img--empty"><span class="code">Missing</span><span class="mark" aria-hidden="true"></span></div>
+                <div class="shot__note"><b>Inside / open</b><span>Bags-specific: how much fits is the question.</span></div>
+              </li>
+              <li class="shot">
+                <div class="shot__img shot__img--empty"><span class="code">No photo</span><span class="mark" aria-hidden="true"></span></div>
+                <div class="shot__note"><b>Color “Black”</b><span>Listed for sale, no image. Critical: shoppers buy blind.</span></div>
+              </li>
+            </ul>
+          </div>
+        </article>
+      </div>
     </section>
-    
-    <footer><div class="logo">aharoll</div><span class="copyright">© 2024</span></footer>
+
+    <section class="section section--rule" aria-labelledby="guide-title">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <h2 id="guide-title">A complete gallery depends on what you sell.</h2>
+          <p class="section__lede">The audit carries a coverage template for each category. A shoe without a sole shot gets flagged. A T-shirt that only differs by size doesn't.</p>
+        </div>
+        <div class="guide" id="guide">
+          <div class="guide__row">
+            <div class="guide__name"><b>Apparel &amp; dresses</b><span class="code">5 shots</span></div>
+            <ul class="guide__shots" style="--tone:#c9b79c"><li>Front</li><li>Back</li><li>Side or 3/4</li><li>Detail</li><li>On model</li></ul>
+          </div>
+          <div class="guide__row">
+            <div class="guide__name"><b>Tops, knits, jackets</b><span class="code">5 shots</span></div>
+            <ul class="guide__shots" style="--tone:#7d8b74"><li>Front</li><li>Back</li><li>Side</li><li>Fabric or closure detail</li><li>On model</li></ul>
+          </div>
+          <div class="guide__row">
+            <div class="guide__name"><b>Shoes</b><span class="code">5 + 1 shots</span></div>
+            <ul class="guide__shots" style="--tone:#3d4a5c"><li>Lateral side</li><li>Front or top</li><li>Back</li><li>Sole</li><li>Detail</li><li class="is-optional">On foot</li></ul>
+          </div>
+          <div class="guide__row">
+            <div class="guide__name"><b>Bags &amp; accessories</b><span class="code">5 shots</span></div>
+            <ul class="guide__shots" style="--tone:#a8754d"><li>Front</li><li>Back</li><li>Side</li><li>Inside or open</li><li>Hardware or strap</li></ul>
+          </div>
+          <div class="guide__row">
+            <div class="guide__name"><b>Jewelry</b><span class="code">4 shots</span></div>
+            <ul class="guide__shots" style="--tone:#c9a54a"><li>Hero</li><li>Close-up</li><li>Scale reference</li><li>Clasp detail</li></ul>
+          </div>
+          <div class="guide__row">
+            <div class="guide__name"><b>Furniture</b><span class="code">4 shots</span></div>
+            <ul class="guide__shots" style="--tone:#8e8a83"><li>Hero</li><li>Angled view</li><li>Material detail</li><li>In-room context</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--rule" aria-labelledby="sev-title">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <h2 id="sev-title">Severity, so you know where to start.</h2>
+          <p class="section__lede">Every product gets one severity and three scores: Asset Coverage, Variant Integrity and SEO Accessibility. Sort by severity and work down.</p>
+        </div>
+        <div class="ladder" id="ladder">
+          <div class="ladder__step sev-critical" style="--r:-5deg">
+            <div class="ladder__chip code"><span>Critical</span><span>Sev 1</span></div>
+            <ul><li>A color you sell has no photo</li><li>Wrong photo on a variant</li><li>Different colors share one gallery</li><li>No usable main image</li></ul>
+          </div>
+          <div class="ladder__step sev-high" style="--r:-2.5deg">
+            <div class="ladder__chip code"><span>High</span><span>Sev 2</span></div>
+            <ul><li>Missing back, side or detail shot</li><li>No on-model shot for fit-driven products</li><li>Category shots missing (sole, inside, scale)</li></ul>
+          </div>
+          <div class="ladder__step sev-medium" style="--r:2.5deg">
+            <div class="ladder__chip code"><span>Medium</span><span>Sev 3</span></div>
+            <ul><li>Backgrounds or lighting drift within a gallery</li><li>Mixed crops and aspect ratios</li><li>Near-duplicates, weak gallery order</li><li>Text burned into images</li></ul>
+          </div>
+          <div class="ladder__step sev-low" style="--r:5deg">
+            <div class="ladder__chip code"><span>Low</span><span>Sev 4</span></div>
+            <ul><li>Missing or weak alt text</li><li>Filenames like IMG_2041.jpg</li><li>One slightly redundant shot</li></ul>
+          </div>
+        </div>
+        <p class="ladder__note">SEO problems are always reported but never push a product above Low. Size-only variants that look identical aren't flagged.</p>
+      </div>
+    </section>
+
+    <section class="section section--rule" id="how" aria-labelledby="how-title">
+      <div class="wrap">
+        <div class="stack-head reveal">
+          <h2 id="how-title">Install, run, fix the red ones.</h2>
+          <p class="section__lede">It lives inside your Shopify admin. No setup, no prompts, no spreadsheet exports.</p>
+        </div>
+        <div class="runblade reveal">
+          <div class="runblade__tip code"><span>How it works</span><span class="runblade__rivet" aria-hidden="true"></span></div>
+          <ol class="steps">
+            <li><b><span>1</span>Install</b><p>Add Asset Audit from the Shopify App Store and open it in your admin.</p></li>
+            <li><b><span>2</span>Run the audit</b><p>One click scans your products' photos with AI vision.</p></li>
+            <li><b><span>3</span>Sort by severity</b><p>Critical first. Open a product to see each issue and the shots it's missing.</p></li>
+            <li><b><span>4</span>Fix and re-run</b><p>Reshoot, relink or reorder, then audit again to confirm it's clean.</p></li>
+          </ol>
+        </div>
+        <div class="assurance reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+          <p>Read-only. <span>The app asks only for permission to read products. It never edits products, themes or settings, and stores no customer data.</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--rule" aria-labelledby="why-title">
+      <div class="wrap evidence">
+        <div class="reveal">
+          <h2 id="why-title" class="sr-only">Why product photos matter</h2>
+          <blockquote>In testing, 56% of shoppers' first move on a product page was to start going through the images.</blockquote>
+          <cite>Baymard Institute, large-scale usability testing · <a href="https://baymard.com/research-articles/ensure-sufficient-image-resolution-and-zoom">source</a></cite>
+        </div>
+        <div class="reveal">
+          <p>When the color they picked has no photo, or the back is never shown, the question goes unanswered and the tab gets closed.</p>
+          <p>Most catalogs grow one upload at a time, by different people, over years. Nobody sees the whole thing at once. That's the job.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--rule" id="pricing" aria-labelledby="pricing-title">
+      <div class="wrap">
+        <div class="price">
+          <div class="price__blades" id="price-blades">
+            <div class="pblade" style="--r:-4deg">
+              <div class="pblade__tip code"><span>Monthly</span><span>100 products</span></div>
+              <b>$20</b><span class="pblade__per">per month</span>
+              <p>Billed every 30 days through Shopify.</p>
+              <span class="pblade__rivet" aria-hidden="true"></span>
+            </div>
+            <div class="pblade" style="--r:4deg">
+              <div class="pblade__tip code"><span>Yearly</span><span>100 products</span></div>
+              <b>$200</b><span class="pblade__per">per year</span>
+              <p>Same plan, paid yearly. Saves 17%.</p>
+              <span class="pblade__rivet" aria-hidden="true"></span>
+            </div>
+          </div>
+          <div class="price__cta reveal">
+            <h2 id="pricing-title">One plan. Billed through Shopify.</h2>
+            <ul>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>AI vision on every product photo</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Severity plus three scores per product</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Category coverage templates</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Read-only, nothing in your store changes</li>
+            </ul>
+            <a class="btn" data-install="pricing" href="https://apps.shopify.com/aharoll-asset-auditor?utm_source=aharoll.com&amp;utm_medium=landing&amp;utm_campaign=pricing">Install on Shopify</a>
+            <span class="fine">Prices as listed on the Shopify App Store, in USD. Cancel from your Shopify admin.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--rule" id="faq" aria-labelledby="faq-title">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <h2 id="faq-title">Questions merchants ask first.</h2>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>Will it change anything in my store?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>No. Asset Audit requests read access to products only. It never edits products, images, themes or settings. You make the fixes, in Shopify, the way you normally would.</p>
+          </details>
+          <details>
+            <summary>What's the difference between the free scan and the app?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>The free scan reads your public catalog and checks structure: how many photos each product has, color variants with no photo, mixed crops, low resolution, generic filenames and a sample of alt text. The app adds AI vision on the photos themselves: background and lighting drift, which angles are present, and which shots each category is missing.</p>
+          </details>
+          <details>
+            <summary>Does the free scan send my data anywhere?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>It runs in your browser against the same public product feed any visitor to your store can load. Results aren't sent to us or stored. We count that a scan happened, not what it found.</p>
+          </details>
+          <details>
+            <summary>My store is password-protected. Can I still use it?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>The free scan can't read a locked storefront, but the app can. It audits from inside your admin, so it works before launch too.</p>
+          </details>
+          <details>
+            <summary>Do my variants need their own photos?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Only when they look different. A color or finish with no photo is critical: the shopper picks it and sees something else. Sizes that look identical can share images, and the audit won't flag them.</p>
+          </details>
+          <details>
+            <summary>What does it cost?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>$20 a month for 100 products, or the same plan for $200 a year. Billing runs through Shopify, so it shows up on your Shopify invoice and you cancel from your admin.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="close" aria-labelledby="close-title">
+      <div class="close__strip" aria-hidden="true">
+        <span style="--c: var(--crit)"></span><span style="--c: var(--high)"></span><span style="--c: var(--med)"></span><span style="--c: var(--low)"></span>
+      </div>
+      <div class="wrap">
+        <h2 id="close-title">See the whole catalog at once.</h2>
+        <p>Find the color with no photo, the bag with no back view and the hero shot on the wrong background before your shoppers do.</p>
+        <div class="close__actions">
+          <a class="btn btn--light" data-install="close" href="https://apps.shopify.com/aharoll-asset-auditor?utm_source=aharoll.com&amp;utm_medium=landing&amp;utm_campaign=close">Install on Shopify</a>
+          <a class="btn btn--ghost" href="#main" data-focus-scan>Scan my store first</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot__inner">
+      <span>© <span id="year">2026</span> Aharoll, London</span>
+      <nav aria-label="Footer">
+        <a href="/blog/">Blog</a>
+        <a href="/lp/">Catalog to video</a>
+        <a href="/legal/app/privacy.html">Privacy</a>
+        <a href="/legal/app/terms.html">Terms</a>
+        <a href="/legal/app/support.html">Support</a>
+        <a href="mailto:aleks@aharoll.com">aleks@aharoll.com</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/landing.js"></script>
 </body>
 </html>
